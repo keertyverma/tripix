@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <Box
         sx={{
-          mt: { xs: "5px", sm: "30px" },
+          mt: "30px",
         }}
       >
         <Stack
@@ -20,10 +20,7 @@ const Footer = () => {
             sx={{ fontSize: { xs: "10px", sm: "15px" } }}
           >
             Made by{" "}
-            <a
-              href="https://www.linkedin.com/in/keertyverma/"
-              className="footer-link"
-            >
+            <a href="https://github.com/keertyverma" className="footer-link">
               Keerty
             </a>{" "}
           </Typography>

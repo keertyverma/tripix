@@ -48,6 +48,9 @@ const HeroBanner = () => {
               xs: "10px",
               md: "20px",
             },
+            mb: {
+              xs: "20px",
+            },
             fontSize: {
               xs: "15px",
               sm: "18px",
