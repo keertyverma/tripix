@@ -11,8 +11,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <Box
-        width="400px"
-        sx={{ width: { xl: "1488px" }, px: { xs: "10px", sm: "20px" } }}
+        sx={{
+          width: { xl: "1488px" },
+          px: { xs: "10px", sm: "20px" },
+        }}
         m="auto"
       >
         <Navbar />

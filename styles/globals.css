@@ -27,7 +27,15 @@ a {
 
 /* Hero Banner */
 .hero-banner-image {
-  object-fit: contain;
   border-radius: 15px;
-  margin-left: 9rem;
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}
+
+/* Footer */
+.copyright {
+  color: #ccc;
+  text-align: center;
 }

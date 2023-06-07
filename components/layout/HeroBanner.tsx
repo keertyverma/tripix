@@ -6,9 +6,9 @@ const HeroBanner = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
-        ml: { sm: "30px", xs: "20px" },
-        mt: { sm: "30px", xs: "20px" },
+        flexDirection: { xs: "column", sm: "row" },
+        ml: { sm: "30px", xs: "5px" },
+        mt: { sm: "30px", xs: "5px" },
       }}
       position="relative"
       p="10px"
@@ -18,7 +18,7 @@ const HeroBanner = () => {
           variant="h1"
           fontWeight="600"
           sx={{
-            fontSize: { xs: "60px", sm: "96px" },
+            fontSize: { xs: "50px", sm: "70px" },
           }}
         >
           <p>Share</p>
@@ -26,11 +26,11 @@ const HeroBanner = () => {
           <p>Explore</p>
         </Typography>
 
-        <Box sx={{ mt: { xs: "15px", sm: "30px" } }}>
+        <Box sx={{ mt: { xs: "10px", sm: "20px" } }}>
           <Typography
             variant="h5"
             sx={{
-              fontSize: { xs: "20px", sm: "34px" },
+              fontSize: { xs: "20px", sm: "25px" },
               lineHeight: "1.5",
             }}
           >
@@ -45,9 +45,14 @@ const HeroBanner = () => {
           size="large"
           sx={{
             mt: {
-              xs: "20px",
+              xs: "10px",
               md: "20px",
             },
+            fontSize: {
+              xs: "15px",
+              sm: "18px",
+            },
+            textTransform: "capitalize",
           }}
         >
           Get Started
@@ -55,17 +60,14 @@ const HeroBanner = () => {
       </Box>
       {/* hide banner image on mobile */}
       <Box
+        width="100%"
         sx={{
-          display: { xs: "none", md: "flex" },
-          maxWidth: "100%",
-          overflow: "hidden",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          p: 3,
+          maxWidth: { xs: "100%", sm: "65%" },
+          ml: { sm: "9rem" },
         }}
       >
         <Image
-          src="/images/banner.webp"
+          src="/images/banner.jpg"
           alt="hero banner"
           className="hero-banner-image"
           width={800}
