@@ -1,5 +1,7 @@
+import { HeroBanner } from "@/components";
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <HeroBanner />;
 };
 
 export default HomePage;

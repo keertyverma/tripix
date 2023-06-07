@@ -7,3 +7,27 @@
 a {
   text-decoration: none;
 }
+
+.gradient {
+  background: linear-gradient(to right, #22577a, #38a3a5, #6ef3d6);
+  /* background: linear-gradient(to left, #a1ff8b, #3f93ff);
+  background: linear-gradient(to left, #4b55db, #34e0e0); */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Navbar */
+.menu-link {
+  color: #38a3a5;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 5px;
+}
+
+/* Hero Banner */
+.hero-banner-image {
+  object-fit: contain;
+  border-radius: 15px;
+  margin-left: 9rem;
+}

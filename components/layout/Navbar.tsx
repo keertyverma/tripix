@@ -12,8 +12,6 @@ import Link from "next/link";
 import { FcMenu } from "react-icons/fc";
 import { useState, MouseEvent } from "react";
 
-import classes from "./Navbar.module.css";
-
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -82,7 +80,7 @@ const Navbar = () => {
               }}
             >
               <MenuItem onClick={handleClose}>
-                <Link href="/register" className={classes.menuLink}>
+                <Link href="/register" className="menu-link">
                   Sign Up
                 </Link>
               </MenuItem>
@@ -90,7 +88,7 @@ const Navbar = () => {
                 onClick={handleClose}
                 style={{ borderTop: "1px solid #ccc" }}
               >
-                <Link href="/login" className={classes.menuLink}>
+                <Link href="/login" className="menu-link">
                   Login
                 </Link>
               </MenuItem>
