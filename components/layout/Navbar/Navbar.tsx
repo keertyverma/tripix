@@ -4,11 +4,27 @@ import {
   Button,
   useMediaQuery,
   useTheme,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { FcMenu } from "react-icons/fc";
+import { useState, MouseEvent } from "react";
+
+import classes from "./Navbar.module.css";
 
 const Navbar = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -46,7 +62,40 @@ const Navbar = () => {
           </Stack>
         </Link>
         {isMobile ? (
-          <div>mobile</div>
+          <>
+            <Button
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <FcMenu style={{ fontSize: "25px" }} />
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem onClick={handleClose}>
+                <Link href="/register" className={classes.menuLink}>
+                  Sign Up
+                </Link>
+              </MenuItem>
+              <MenuItem
+                onClick={handleClose}
+                style={{ borderTop: "1px solid #ccc" }}
+              >
+                <Link href="/login" className={classes.menuLink}>
+                  Login
+                </Link>
+              </MenuItem>
+            </Menu>
+          </>
         ) : (
           <Stack
             direction="row"

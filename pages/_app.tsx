@@ -4,8 +4,7 @@ import { Box } from "@mui/material";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material";
 
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import { Navbar, Footer } from "@/components";
 import theme from "../theme";
 
 export default function App({ Component, pageProps }: AppProps) {
