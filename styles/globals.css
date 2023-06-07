@@ -39,3 +39,30 @@ a {
   color: #ccc;
   text-align: center;
 }
+
+/* Form */
+.signup-form {
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.login-link {
+  color: #38a3a5;
+}
+
+.with-separators {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-transform: uppercase;
+  width: 95%;
+  color: rgb(118, 116, 116);
+}
+
+.with-separators:before,
+.with-separators:after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgb(170, 163, 163);
+}

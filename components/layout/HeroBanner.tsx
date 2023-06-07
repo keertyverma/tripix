@@ -40,6 +40,7 @@ const HeroBanner = () => {
         </Box>
 
         <Button
+          href="/register"
           variant="contained"
           color="primary"
           size="large"
@@ -61,7 +62,6 @@ const HeroBanner = () => {
           Get Started
         </Button>
       </Box>
-      {/* hide banner image on mobile */}
       <Box
         width="100%"
         sx={{

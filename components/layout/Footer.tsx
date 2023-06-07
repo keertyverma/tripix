@@ -21,7 +21,7 @@ const Footer = () => {
           >
             Made by{" "}
             <a href="https://github.com/keertyverma" className="footer-link">
-              Keerty
+              Keerty 👩‍💻
             </a>{" "}
           </Typography>
           <Stack
