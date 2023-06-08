@@ -101,31 +101,32 @@ const Navbar = () => {
             alignItems="flex-end"
             sx={{ gap: { lg: "20px", xs: "15px" } }}
           >
-            <Button
-              href="/register"
-              variant="contained"
-              size="medium"
-              color="primary"
-              sx={{
-                borderRadius: "10px",
-                textTransform: "capitalize",
-              }}
-            >
-              Sign Up
-            </Button>
-
-            <Button
-              href="/login"
-              variant="contained"
-              size="medium"
-              color="secondary"
-              sx={{
-                borderRadius: "10px",
-                textTransform: "capitalize",
-              }}
-            >
-              Login
-            </Button>
+            <Link href="/register">
+              <Button
+                variant="contained"
+                size="medium"
+                color="primary"
+                sx={{
+                  borderRadius: "10px",
+                  textTransform: "capitalize",
+                }}
+              >
+                Sign Up
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button
+                variant="contained"
+                size="medium"
+                color="secondary"
+                sx={{
+                  borderRadius: "10px",
+                  textTransform: "capitalize",
+                }}
+              >
+                Login
+              </Button>
+            </Link>
           </Stack>
         )}
       </Stack>

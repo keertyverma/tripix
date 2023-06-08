@@ -35,6 +35,13 @@ a {
 }
 
 /* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 .copyright {
   color: #ccc;
   text-align: center;
@@ -65,4 +72,16 @@ a {
   flex: 1;
   height: 1px;
   background: rgb(170, 163, 163);
+}
+
+/* Register Page */
+.side-image {
+  border-radius: 15px;
+  object-fit: cover;
+  width: 100% !important;
+  height: auto;
+}
+
+.signup-form > input {
+  padding: 0;
 }

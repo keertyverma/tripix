@@ -1,31 +1,42 @@
-import { Box } from "@mui/material";
+import { Box, Stack, Grid, Hidden } from "@mui/material";
 import Image from "next/image";
 
 import { Signup } from "@/components";
 
 const register = () => {
   return (
-    <Box
+    <Grid
+      container
+      spacing={2}
       sx={{
-        display: "flex",
-        flexDirection: { xs: "column", sm: "row" },
-        ml: { sm: "30px", xs: "5px" },
-        mt: { sm: "30px", xs: "5px" },
+        mt: { xs: "10px", sm: "20px" },
+        px: { xs: "10px", sm: "20px" },
       }}
-      position="relative"
-      p="10px"
     >
-      <Box sx={{ display: { xs: "none", sm: "flex" } }}>
-        <Image
-          src="/images/nature.webp"
-          alt="user register"
-          // className="hero-banner-image"
-          width={800}
-          height={600}
-        />
-      </Box>
-      <Signup />
-    </Box>
+      <Hidden smDown>
+        <Grid item md={6}>
+          <Image
+            src="/images/nature.webp"
+            alt="user register"
+            className="side-image"
+            width={600}
+            height={400}
+          />
+        </Grid>
+      </Hidden>
+      <Grid item xs={12} md={6}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <Signup />
+        </Box>
+      </Grid>
+    </Grid>
   );
 };
 

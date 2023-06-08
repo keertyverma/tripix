@@ -10,7 +10,7 @@ const Signup = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        margin: { xs: "30px 5px 0 5px", sm: "20px" },
+        margin: { xs: "30px 5px 0 5px", sm: "10px" },
       }}
     >
       <Typography variant="h1" fontSize={{ xs: "20px", sm: "35px" }}>
@@ -30,9 +30,14 @@ const Signup = () => {
             gap: { xs: "10px", sm: "20px" },
           }}
         >
-          <TextField fullWidth label="Name" type="text" required />
-          <TextField fullWidth label="Email" type="email" required />
-          <TextField fullWidth label="Password" required />
+          <TextField
+            // InputProps={{ style: { padding: "0px", margin: "0" } }}
+            label="Name"
+            type="text"
+            required
+          />
+          <TextField label="Email" type="email" required />
+          <TextField label="Password" required />
           <Button
             variant="contained"
             color="primary"
