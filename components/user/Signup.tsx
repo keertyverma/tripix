@@ -94,6 +94,7 @@ const Signup = () => {
             {...register("password")}
             name="password"
             label="Password"
+            type="password"
             required
           />
           <Button
