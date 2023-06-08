@@ -1,8 +1,20 @@
 import { Box, Typography, Button, TextField, Stack } from "@mui/material";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
+import { AppwriteException } from "appwrite";
+import { useState } from "react";
+
+import useLogin from "@/hooks/auth/useLogin";
+import Loader from "../ui/Loader";
 
 const Login = () => {
+  const { register, handleSubmit, reset } = useForm();
+  const router = useRouter();
+  const userLogin = useLogin();
+  const [error, setError] = useState<string | null>(null);
+
   return (
     <Box
       sx={{
@@ -23,10 +35,27 @@ const Login = () => {
 
       <form
         className="login-form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          console.log("submitting login form");
-        }}
+        onSubmit={handleSubmit((data) => {
+          console.log("form data = ", data);
+
+          userLogin.mutate(
+            {
+              email: data.email,
+              password: data.password,
+            },
+            {
+              onSuccess() {
+                //TODO: navigate user to dashboard
+                router.push("/");
+              },
+              onError(error) {
+                const appWriteError = error as AppwriteException;
+                setError(appWriteError.message);
+                reset();
+              },
+            }
+          );
+        })}
       >
         <Stack
           sx={{
@@ -35,8 +64,27 @@ const Login = () => {
             mt: { xs: "30px", sm: "40px" },
           }}
         >
-          <TextField label="Email" type="email" required />
-          <TextField label="Password" type="password" required />
+          {error && (
+            <Typography variant="subtitle1" color="error" textAlign="center">
+              {error}
+            </Typography>
+          )}
+          {userLogin.isLoading && <Loader />}
+
+          <TextField
+            {...register("email")}
+            name="email"
+            label="Email"
+            type="email"
+            required
+          />
+          <TextField
+            {...register("password")}
+            name="password"
+            label="Password"
+            type="password"
+            required
+          />
           <Button
             variant="contained"
             color="primary"
