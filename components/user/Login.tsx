@@ -8,12 +8,36 @@ import { useState } from "react";
 
 import useLogin from "@/hooks/auth/useLogin";
 import Loader from "../ui/Loader";
+import { authService } from "@/services";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
   const router = useRouter();
   const userLogin = useLogin();
   const [error, setError] = useState<string | null>(null);
+
+  const handleLoginWithEmailAndPass = (email: string, password: string) => {
+    userLogin.mutate(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess() {
+          //TODO: navigate user to dashboard
+          router.push("/");
+        },
+        onError(error) {
+          const appWriteError = error as AppwriteException;
+          setError(appWriteError.message);
+        },
+      }
+    );
+  };
+
+  const handleLoginWithGoogle = () => {
+    authService.loginWithGoogle();
+  };
 
   return (
     <Box
@@ -36,25 +60,8 @@ const Login = () => {
       <form
         className="login-form"
         onSubmit={handleSubmit((data) => {
-          console.log("form data = ", data);
-
-          userLogin.mutate(
-            {
-              email: data.email,
-              password: data.password,
-            },
-            {
-              onSuccess() {
-                //TODO: navigate user to dashboard
-                router.push("/");
-              },
-              onError(error) {
-                const appWriteError = error as AppwriteException;
-                setError(appWriteError.message);
-                reset();
-              },
-            }
-          );
+          handleLoginWithEmailAndPass(data.email, data.password);
+          reset();
         })}
       >
         <Stack
@@ -122,6 +129,7 @@ const Login = () => {
         color="secondary"
         size="large"
         sx={{ textTransform: "none" }}
+        onClick={handleLoginWithGoogle}
       >
         <Stack
           direction="row"
