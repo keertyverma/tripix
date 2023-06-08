@@ -1,8 +1,20 @@
 import { Box, Typography, Button, TextField, Stack } from "@mui/material";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
+import { AppwriteException } from "appwrite";
+import { useState } from "react";
+
+import useSignup from "@/hooks/auth/useSignup";
+import Loader from "../ui/Loader";
 
 const Signup = () => {
+  const { register, handleSubmit, reset } = useForm();
+  const router = useRouter();
+  const signup = useSignup();
+  const [error, setError] = useState<string | null>(null);
+
   return (
     <Box
       sx={{
@@ -23,10 +35,30 @@ const Signup = () => {
 
       <form
         className="signup-form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          console.log("submitting form");
-        }}
+        onSubmit={handleSubmit((data) => {
+          signup.mutate(
+            {
+              name: data.name,
+              email: data.email,
+              password: data.password,
+            },
+            {
+              onSuccess() {
+                //TODO: navigate user to dashboard
+                router.push("/");
+              },
+              onError(error) {
+                const appWriteError = error as AppwriteException;
+                if (appWriteError.message.includes("email already exists")) {
+                  setError("User with this email is already registered !");
+                } else {
+                  setError("Something went wrong !");
+                }
+                reset();
+              },
+            }
+          );
+        })}
       >
         <Stack
           sx={{
@@ -35,9 +67,33 @@ const Signup = () => {
             mt: { xs: "30px", sm: "40px" },
           }}
         >
-          <TextField label="Name" type="text" required />
-          <TextField label="Email" type="email" required />
-          <TextField label="Password" required />
+          {error && (
+            <Typography variant="subtitle1" color="error" textAlign="center">
+              {error}
+            </Typography>
+          )}
+          {signup.isLoading && <Loader />}
+
+          <TextField
+            {...register("name")}
+            name="name"
+            label="Name"
+            type="text"
+            required
+          />
+          <TextField
+            {...register("email")}
+            name="email"
+            label="Email"
+            type="email"
+            required
+          />
+          <TextField
+            {...register("password")}
+            name="password"
+            label="Password"
+            required
+          />
           <Button
             variant="contained"
             color="primary"
@@ -48,6 +104,7 @@ const Signup = () => {
               fontSize: { xs: "15px", sm: "20px" },
             }}
             type="submit"
+            disabled={signup.isLoading}
           >
             Submit
           </Button>
