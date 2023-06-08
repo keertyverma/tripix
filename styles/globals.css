@@ -48,11 +48,13 @@ footer {
 }
 
 /* Form */
-.signup-form {
+.signup-form,
+.login-form {
   border-radius: 10px;
 }
 
-.login-link {
+.login-link,
+.signup-link {
   color: #38a3a5;
 }
 
@@ -81,6 +83,7 @@ footer {
   height: auto;
 }
 
-.signup-form input {
+.signup-form input,
+.login-form input {
   padding: 12px !important;
 }

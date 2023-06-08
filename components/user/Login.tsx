@@ -2,7 +2,7 @@ import { Box, Typography, Button, TextField, Stack } from "@mui/material";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 
-const Signup = () => {
+const Login = () => {
   return (
     <Box
       sx={{
@@ -18,14 +18,14 @@ const Signup = () => {
         fontSize={{ xs: "25px", sm: "35px" }}
         fontWeight="bold"
       >
-        Create your account
+        Log In
       </Typography>
 
       <form
-        className="signup-form"
+        className="login-form"
         onSubmit={(event) => {
           event.preventDefault();
-          console.log("submitting form");
+          console.log("submitting login form");
         }}
       >
         <Stack
@@ -35,9 +35,8 @@ const Signup = () => {
             mt: { xs: "30px", sm: "40px" },
           }}
         >
-          <TextField label="Name" type="text" required />
           <TextField label="Email" type="email" required />
-          <TextField label="Password" required />
+          <TextField label="Password" type="password" required />
           <Button
             variant="contained"
             color="primary"
@@ -49,14 +48,14 @@ const Signup = () => {
             }}
             type="submit"
           >
-            Submit
+            Login
           </Button>
         </Stack>
       </form>
       <Typography variant="subtitle1" sx={{ mt: { xs: "10px", sm: "15px" } }}>
-        Already have an account?{" "}
-        <Link href="/login" className="login-link">
-          Log In
+        Do not have an account?{" "}
+        <Link href="/register" className="signup-link">
+          Sign up
         </Link>{" "}
       </Typography>
       <Typography
@@ -85,7 +84,7 @@ const Signup = () => {
         >
           <FcGoogle size={20} />
           <Typography variant="h6" fontSize={{ xs: "15px", sm: "20px" }}>
-            Sign-in with Google
+            Login with Google
           </Typography>
         </Stack>
       </Button>
@@ -93,4 +92,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

@@ -1,4 +1,4 @@
-import { Box, Stack, Grid, Hidden } from "@mui/material";
+import { Box, Grid, Hidden } from "@mui/material";
 import Image from "next/image";
 
 import { Signup } from "@/components";

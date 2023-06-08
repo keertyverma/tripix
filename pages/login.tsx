@@ -1,7 +1,42 @@
-import React from "react";
+import { Box, Grid, Hidden } from "@mui/material";
+import Image from "next/image";
+import { Login } from "@/components";
 
 const login = () => {
-  return <div>login</div>;
+  return (
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        mt: { xs: "10px", sm: "20px" },
+        px: { xs: "10px", sm: "20px" },
+      }}
+    >
+      <Hidden smDown>
+        <Grid item md={6}>
+          <Image
+            src="/images/nature.webp"
+            alt="user login"
+            className="side-image"
+            width={600}
+            height={400}
+          />
+        </Grid>
+      </Hidden>
+      <Grid item xs={12} md={6}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <Login />
+        </Box>
+      </Grid>
+    </Grid>
+  );
 };
 
 export default login;

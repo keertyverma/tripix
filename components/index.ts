@@ -2,5 +2,6 @@ import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import HeroBanner from "./layout/HeroBanner";
 import Signup from "./user/Signup";
+import Login from "./user/Login";
 
-export { Navbar, Footer, HeroBanner, Signup };
+export { Navbar, Footer, HeroBanner, Signup, Login };
