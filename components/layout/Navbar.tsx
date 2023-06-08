@@ -80,16 +80,16 @@ const Navbar = () => {
               }}
             >
               <MenuItem onClick={handleClose}>
-                <Link href="/register" className="menu-link">
-                  Sign Up
+                <Link href="/login" className="menu-link">
+                  Login
                 </Link>
               </MenuItem>
               <MenuItem
                 onClick={handleClose}
                 style={{ borderTop: "1px solid #ccc" }}
               >
-                <Link href="/login" className="menu-link">
-                  Login
+                <Link href="/register" className="menu-link">
+                  Sign Up
                 </Link>
               </MenuItem>
             </Menu>
@@ -101,6 +101,19 @@ const Navbar = () => {
             alignItems="flex-end"
             sx={{ gap: { lg: "20px", xs: "15px" } }}
           >
+            <Link href="/login">
+              <Button
+                variant="outlined"
+                size="medium"
+                color="secondary"
+                sx={{
+                  borderRadius: "10px",
+                  textTransform: "capitalize",
+                }}
+              >
+                Login
+              </Button>
+            </Link>
             <Link href="/register">
               <Button
                 variant="contained"
@@ -112,19 +125,6 @@ const Navbar = () => {
                 }}
               >
                 Sign Up
-              </Button>
-            </Link>
-            <Link href="/login">
-              <Button
-                variant="contained"
-                size="medium"
-                color="secondary"
-                sx={{
-                  borderRadius: "10px",
-                  textTransform: "capitalize",
-                }}
-              >
-                Login
               </Button>
             </Link>
           </Stack>
