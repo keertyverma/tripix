@@ -8,12 +8,19 @@ import { useState } from "react";
 
 import useSignup from "@/hooks/auth/useSignup";
 import Loader from "../ui/Loader";
+import useLogin from "@/hooks/auth/useLogin";
+import { authService } from "@/services";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
   const router = useRouter();
   const signup = useSignup();
+  const userLogin = useLogin();
   const [error, setError] = useState<string | null>(null);
+
+  const handleLoginWithGoogle = () => {
+    authService.loginWithGoogle();
+  };
 
   return (
     <Box
@@ -127,6 +134,7 @@ const Signup = () => {
         color="secondary"
         size="large"
         sx={{ textTransform: "none" }}
+        onClick={handleLoginWithGoogle}
       >
         <Stack
           direction="row"

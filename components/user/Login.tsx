@@ -139,7 +139,7 @@ const Login = () => {
         >
           <FcGoogle size={20} />
           <Typography variant="h6" fontSize={{ xs: "15px", sm: "20px" }}>
-            Login with Google
+            Sign-in with Google
           </Typography>
         </Stack>
       </Button>
