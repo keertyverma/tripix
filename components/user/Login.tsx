@@ -11,7 +11,7 @@ import Loader from "../ui/Loader";
 import { authService } from "@/services";
 
 const Login = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const router = useRouter();
   const userLogin = useLogin();
   const [error, setError] = useState<string | null>(null);
@@ -61,7 +61,6 @@ const Login = () => {
         className="login-form"
         onSubmit={handleSubmit((data) => {
           handleLoginWithEmailAndPass(data.email, data.password);
-          reset();
         })}
       >
         <Stack

@@ -10,7 +10,7 @@ import useSignup from "@/hooks/auth/useSignup";
 import Loader from "../ui/Loader";
 
 const Signup = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const router = useRouter();
   const signup = useSignup();
   const [error, setError] = useState<string | null>(null);
@@ -49,12 +49,7 @@ const Signup = () => {
               },
               onError(error) {
                 const appWriteError = error as AppwriteException;
-                if (appWriteError.message.includes("email already exists")) {
-                  setError("User with this email is already registered !");
-                } else {
-                  setError("Something went wrong !");
-                }
-                reset();
+                setError(appWriteError.message);
               },
             }
           );
