@@ -24,8 +24,7 @@ const Login = () => {
       },
       {
         onSuccess() {
-          //TODO: navigate user to dashboard
-          router.push("/");
+          router.push("/dashboard");
         },
         onError(error) {
           const appWriteError = error as AppwriteException;

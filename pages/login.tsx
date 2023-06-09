@@ -18,6 +18,17 @@ const login = () => {
           px: { xs: "10px", sm: "20px" },
         }}
       >
+        <Hidden smDown>
+          <Grid item md={6}>
+            <Image
+              src="/images/nature.webp"
+              alt="user login"
+              className="side-image"
+              width={600}
+              height={400}
+            />
+          </Grid>
+        </Hidden>
         <Grid item xs={12} md={6}>
           <Box
             sx={{
@@ -30,17 +41,6 @@ const login = () => {
             <Login />
           </Box>
         </Grid>
-        <Hidden smDown>
-          <Grid item md={6}>
-            <Image
-              src="/images/nature.webp"
-              alt="user login"
-              className="side-image"
-              width={600}
-              height={400}
-            />
-          </Grid>
-        </Hidden>
       </Grid>
     </>
   );

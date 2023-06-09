@@ -81,6 +81,7 @@ footer {
   object-fit: cover;
   width: 100% !important;
   height: auto;
+  transform: scaleX(-1);
 }
 
 .signup-form input,

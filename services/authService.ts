@@ -18,6 +18,10 @@ const authService = {
       `${constants.app.url}/login`,
       ["profile"]
     ),
+
+  getCurrentUser: () => account.get(),
+
+  logout: () => account.deleteSession("current"),
 };
 
 export { authService };
