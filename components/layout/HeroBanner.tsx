@@ -19,6 +19,7 @@ const HeroBanner = () => {
           fontWeight="600"
           sx={{
             fontSize: { xs: "50px", sm: "70px" },
+            textAlign: { xs: "center", sm: "left" },
           }}
         >
           <p>Share</p>
@@ -31,6 +32,7 @@ const HeroBanner = () => {
             variant="h5"
             sx={{
               fontSize: { xs: "20px", sm: "25px" },
+              textAlign: { xs: "center", sm: "left" },
               lineHeight: "1.5",
             }}
           >
@@ -39,28 +41,35 @@ const HeroBanner = () => {
           </Typography>
         </Box>
 
-        <Button
-          href="/register"
-          variant="contained"
-          color="primary"
-          size="large"
+        <Box
+          display="flex"
           sx={{
-            mt: {
-              xs: "10px",
-              md: "20px",
-            },
-            mb: {
-              xs: "20px",
-            },
-            fontSize: {
-              xs: "15px",
-              sm: "18px",
-            },
-            textTransform: "capitalize",
+            justifyContent: { xs: "center", sm: "flex-start" },
           }}
         >
-          Get Started
-        </Button>
+          <Button
+            href="/register"
+            variant="contained"
+            color="primary"
+            size="large"
+            sx={{
+              mt: {
+                xs: "10px",
+                md: "20px",
+              },
+              mb: {
+                xs: "20px",
+              },
+              fontSize: {
+                xs: "15px",
+                sm: "18px",
+              },
+              textTransform: "capitalize",
+            }}
+          >
+            Get Started
+          </Button>
+        </Box>
       </Box>
       <Box
         width="100%"
