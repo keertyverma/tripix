@@ -1,40 +1,28 @@
 import { useRouter } from "next/router";
-import { useEffect, useState, ReactNode } from "react";
+import { useEffect, ReactNode } from "react";
 
 import Loader from "./ui/Loader";
-import { authService } from "@/services";
+import { useAuth } from "@/providers/auth";
 
 interface Props {
   children: ReactNode;
 }
 
-interface CurrentUser {
-  id: string;
-  name: string;
-  email: string;
-}
-
 const ProtectedRoute = ({ children }: Props) => {
-  const [user, setUser] = useState<CurrentUser | null>(null);
   const router = useRouter();
+  const { user } = useAuth();
 
   useEffect(() => {
-    // get currently logged in user data
-    authService
-      .getCurrentUser()
-      .then((res) => {
-        setUser({ id: res.$id, name: res.name, email: res.email });
-      })
-      .catch((err) => {
-        router.push("/login");
-      });
-  }, [router, user]);
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
 
   if (!user) return <Loader />;
 
   return (
     <>
-      <div>Hello - {user.name}</div>
+      <div>Hello - {user?.name}</div>
       {children}
     </>
   );

@@ -1,15 +1,16 @@
-import { Box, Typography, Button, TextField, Stack } from "@mui/material";
-import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { AppwriteException } from "appwrite";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
 
-import useSignup from "@/hooks/auth/useSignup";
-import Loader from "../ui/Loader";
 import useLogin from "@/hooks/auth/useLogin";
+import useSignup from "@/hooks/auth/useSignup";
+import { useAuth } from "@/providers/auth";
 import { authService } from "@/services";
+import Loader from "../ui/Loader";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
@@ -17,9 +18,31 @@ const Signup = () => {
   const signup = useSignup();
   const userLogin = useLogin();
   const [error, setError] = useState<string | null>(null);
+  const { setUser } = useAuth();
 
-  const handleLoginWithGoogle = () => {
-    authService.loginWithGoogle();
+  const handleLoginWithGoogle = async () => {
+    await authService.loginWithGoogle();
+  };
+
+  const handleLoginWithEmailAndPass = (email: string, password: string) => {
+    userLogin.mutate(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess() {
+          authService.getCurrentUser().then((res) => {
+            setUser({ id: res.$id, name: res.name, email: res.email });
+            router.push("/dashboard");
+          });
+        },
+        onError(error) {
+          const appWriteError = error as AppwriteException;
+          setError(appWriteError.message);
+        },
+      }
+    );
   };
 
   return (
@@ -51,7 +74,7 @@ const Signup = () => {
             },
             {
               onSuccess() {
-                router.push("/dashboard");
+                handleLoginWithEmailAndPass(data.email, data.password);
               },
               onError(error) {
                 const appWriteError = error as AppwriteException;

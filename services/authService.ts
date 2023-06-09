@@ -14,7 +14,7 @@ const authService = {
   loginWithGoogle: () =>
     account.createOAuth2Session(
       "google",
-      `${constants.app.url}/`,
+      `${constants.app.url}/oauth`,
       `${constants.app.url}/login`,
       ["profile"]
     ),

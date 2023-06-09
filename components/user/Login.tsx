@@ -1,20 +1,22 @@
-import { Box, Typography, Button, TextField, Stack } from "@mui/material";
-import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { AppwriteException } from "appwrite";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
 
 import useLogin from "@/hooks/auth/useLogin";
-import Loader from "../ui/Loader";
+import { useAuth } from "@/providers/auth";
 import { authService } from "@/services";
+import Loader from "../ui/Loader";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const router = useRouter();
   const userLogin = useLogin();
   const [error, setError] = useState<string | null>(null);
+  const { setUser } = useAuth();
 
   const handleLoginWithEmailAndPass = (email: string, password: string) => {
     userLogin.mutate(
@@ -24,7 +26,10 @@ const Login = () => {
       },
       {
         onSuccess() {
-          router.push("/dashboard");
+          authService.getCurrentUser().then((res) => {
+            setUser({ id: res.$id, name: res.name, email: res.email });
+            router.push("/dashboard");
+          });
         },
         onError(error) {
           const appWriteError = error as AppwriteException;
@@ -34,8 +39,8 @@ const Login = () => {
     );
   };
 
-  const handleLoginWithGoogle = () => {
-    authService.loginWithGoogle();
+  const handleLoginWithGoogle = async () => {
+    await authService.loginWithGoogle();
   };
 
   return (
