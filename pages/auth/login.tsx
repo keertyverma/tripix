@@ -1,9 +1,9 @@
 import { Box, Grid, Hidden } from "@mui/material";
 import Image from "next/image";
-import { Login } from "@/components";
+import { LoginForm } from "@/components";
 import Head from "next/head";
 
-const login = () => {
+const Login = () => {
   return (
     <>
       <Head>
@@ -38,7 +38,7 @@ const login = () => {
               height: "100%",
             }}
           >
-            <Login />
+            <LoginForm />
           </Box>
         </Grid>
       </Grid>
@@ -46,4 +46,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

@@ -1,7 +1,7 @@
 import { Box, Grid, Hidden } from "@mui/material";
 import Image from "next/image";
 
-import { Signup } from "@/components";
+import { SignupForm } from "@/components";
 import Head from "next/head";
 
 const register = () => {
@@ -42,7 +42,7 @@ const register = () => {
               height: "100%",
             }}
           >
-            <Signup />
+            <SignupForm />
           </Box>
         </Grid>
       </Grid>

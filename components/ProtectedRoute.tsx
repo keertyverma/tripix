@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }: Props) => {
 
   useEffect(() => {
     if (!user) {
-      router.push("/login");
+      router.push("/auth/login");
     }
   }, []);
 

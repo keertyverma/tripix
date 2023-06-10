@@ -15,7 +15,7 @@ const OAuth = () => {
         setUser({ id: res.$id, name: res.name, email: res.email });
         router.push("/dashboard");
       })
-      .catch((err) => router.push("/login"));
+      .catch((err) => router.push("/auth/login"));
   }, []);
 
   return null;

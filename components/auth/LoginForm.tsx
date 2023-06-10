@@ -7,22 +7,16 @@ import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 
 import useLogin from "@/hooks/auth/useLogin";
-import useSignup from "@/hooks/auth/useSignup";
 import { useAuth } from "@/providers/auth";
 import { authService } from "@/services";
 import Loader from "../ui/Loader";
 
-const Signup = () => {
+const LoginForm = () => {
   const { register, handleSubmit } = useForm();
   const router = useRouter();
-  const signup = useSignup();
   const userLogin = useLogin();
   const [error, setError] = useState<string | null>(null);
   const { setUser } = useAuth();
-
-  const handleLoginWithGoogle = async () => {
-    await authService.loginWithGoogle();
-  };
 
   const handleLoginWithEmailAndPass = (email: string, password: string) => {
     userLogin.mutate(
@@ -45,6 +39,10 @@ const Signup = () => {
     );
   };
 
+  const handleLoginWithGoogle = async () => {
+    await authService.loginWithGoogle();
+  };
+
   return (
     <Box
       sx={{
@@ -60,28 +58,13 @@ const Signup = () => {
         fontSize={{ xs: "25px", sm: "35px" }}
         fontWeight="bold"
       >
-        Create your account
+        Log In
       </Typography>
 
       <form
-        className="signup-form"
+        className="login-form"
         onSubmit={handleSubmit((data) => {
-          signup.mutate(
-            {
-              name: data.name,
-              email: data.email,
-              password: data.password,
-            },
-            {
-              onSuccess() {
-                handleLoginWithEmailAndPass(data.email, data.password);
-              },
-              onError(error) {
-                const appWriteError = error as AppwriteException;
-                setError(appWriteError.message);
-              },
-            }
-          );
+          handleLoginWithEmailAndPass(data.email, data.password);
         })}
       >
         <Stack
@@ -96,15 +79,8 @@ const Signup = () => {
               {error}
             </Typography>
           )}
-          {signup.isLoading && <Loader />}
+          {userLogin.isLoading && <Loader />}
 
-          <TextField
-            {...register("name")}
-            name="name"
-            label="Name"
-            type="text"
-            required
-          />
           <TextField
             {...register("email")}
             name="email"
@@ -129,16 +105,15 @@ const Signup = () => {
               fontSize: { xs: "15px", sm: "20px" },
             }}
             type="submit"
-            disabled={signup.isLoading}
           >
-            Submit
+            Login
           </Button>
         </Stack>
       </form>
       <Typography variant="subtitle1" sx={{ mt: { xs: "10px", sm: "15px" } }}>
-        Already have an account?{" "}
-        <Link href="/login" className="login-link">
-          Log In
+        Do not have an account?{" "}
+        <Link href="/auth/register" className="signup-link">
+          Sign up
         </Link>{" "}
       </Typography>
       <Typography
@@ -176,4 +151,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default LoginForm;

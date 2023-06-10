@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 const HeroBanner = () => {
   return (
@@ -47,28 +48,29 @@ const HeroBanner = () => {
             justifyContent: { xs: "center", sm: "flex-start" },
           }}
         >
-          <Button
-            href="/register"
-            variant="contained"
-            color="primary"
-            size="large"
-            sx={{
-              mt: {
-                xs: "10px",
-                md: "20px",
-              },
-              mb: {
-                xs: "20px",
-              },
-              fontSize: {
-                xs: "15px",
-                sm: "18px",
-              },
-              textTransform: "capitalize",
-            }}
-          >
-            Get Started
-          </Button>
+          <Link href="/auth/register">
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              sx={{
+                mt: {
+                  xs: "10px",
+                  md: "20px",
+                },
+                mb: {
+                  xs: "20px",
+                },
+                fontSize: {
+                  xs: "15px",
+                  sm: "18px",
+                },
+                textTransform: "capitalize",
+              }}
+            >
+              Get Started
+            </Button>
+          </Link>
         </Box>
       </Box>
       <Box
