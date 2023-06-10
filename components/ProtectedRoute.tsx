@@ -10,22 +10,17 @@ interface Props {
 
 const ProtectedRoute = ({ children }: Props) => {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
   useEffect(() => {
-    if (!user) {
+    if (!loading && !user) {
       router.push("/auth/login");
     }
-  }, []);
+  }, [loading]);
 
   if (!user) return <Loader />;
 
-  return (
-    <>
-      <div>Hello - {user?.name}</div>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
