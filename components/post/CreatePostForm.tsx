@@ -21,6 +21,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 
+interface Country {
+  code: string;
+  name: string;
+}
+
 const CreatePostForm = () => {
   const { register, handleSubmit } = useForm();
   const [date, setDate] = useState<string | null>(null);
@@ -29,7 +34,7 @@ const CreatePostForm = () => {
   const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(
     null
   );
-  const [countries, setContries] = useState(null);
+  const [countries, setContries] = useState<Country[]>([]);
 
   useEffect(() => {
     localeService.getCountries().then((res) => {
@@ -44,7 +49,7 @@ const CreatePostForm = () => {
 
       const reader = new FileReader();
       reader.onload = (e) => {
-        const base64String = e?.target?.result?.split(",")[1];
+        const base64String = (e?.target?.result as string).split(",")[1];
 
         setImagePreview(`data:image/jpeg;base64,${base64String}`);
       };
@@ -96,9 +101,9 @@ const CreatePostForm = () => {
           <DatePicker
             label="Date"
             value={date}
-            onChange={(newValue) => {
-              setDate(newValue?.toISOString());
-            }}
+            onChange={(newValue) =>
+              setDate(new Date((newValue as string).toString()).toISOString())
+            }
           />
         </LocalizationProvider>
         <Stack
