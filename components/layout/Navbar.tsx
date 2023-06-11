@@ -7,7 +7,6 @@ import {
   MenuItem,
   Stack,
   Typography,
-  useTheme,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -86,6 +85,7 @@ const Navbar = () => {
                     sx={{
                       borderRadius: "10px",
                       textTransform: "capitalize",
+                      fontSize: "20px",
                     }}
                   >
                     Create Memories

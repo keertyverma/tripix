@@ -1,8 +1,18 @@
-import { Box, Button, Hidden, Menu, MenuItem, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  Hidden,
+  Menu,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
 import Logout from "../auth/Logout";
+import { useAuth } from "@/providers/auth";
 
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -14,6 +24,8 @@ const UserMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const { user } = useAuth();
 
   return (
     <>
@@ -33,12 +45,14 @@ const UserMenu = () => {
             borderRadius: "50%",
           }}
         >
-          <Image
-            src="/images/profile-pic.png"
-            alt="profile-pic"
-            width={40}
-            height={40}
-          ></Image>
+          <Avatar sx={{ width: 40, height: 40, bgcolor: "#57CC99" }}>
+            {" "}
+            {user?.name
+              .split(" ")
+              .map((d) => d[0])
+              .join("")
+              .toUpperCase()}
+          </Avatar>
         </Box>
       </Button>
       <Menu
@@ -50,24 +64,26 @@ const UserMenu = () => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose} sx={{ padding: "10px 25px" }}>
+        <MenuItem
+          onClick={handleClose}
+          sx={{ padding: { xs: "0 10px", sm: "0 30px" } }}
+        >
           <Link href="/profile" className="menu-link">
             <Typography>My Profile</Typography>
           </Link>
         </MenuItem>
+        <Divider />
         <Hidden smUp>
-          <MenuItem
-            onClick={handleClose}
-            sx={{ padding: "10px 10px", borderTop: "1px solid #ccc" }}
-          >
+          <MenuItem onClick={handleClose} sx={{ padding: { xs: "0 10px" } }}>
             <Link href="/post/create" className="menu-link">
               <Typography>Create Memories</Typography>
             </Link>
           </MenuItem>
+          <Divider />
         </Hidden>
         <MenuItem
           onClick={handleClose}
-          sx={{ padding: "10px 25px", borderTop: "1px solid #ccc" }}
+          sx={{ padding: { xs: "0 10px", sm: "0 30px" } }}
         >
           <Logout />
         </MenuItem>
