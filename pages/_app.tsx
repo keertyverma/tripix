@@ -27,7 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <Box
             sx={{
               width: { xl: "1488px" },
-              px: { xs: "10px", sm: "20px" },
             }}
             m="auto"
           >

@@ -76,7 +76,7 @@ const UserMenu = () => {
         <Hidden smUp>
           <MenuItem onClick={handleClose} sx={{ padding: { xs: "0 10px" } }}>
             <Link href="/post/create" className="menu-link">
-              <Typography>Create Memories</Typography>
+              <Typography>Create</Typography>
             </Link>
           </MenuItem>
           <Divider />

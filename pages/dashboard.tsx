@@ -12,13 +12,13 @@ const Dashboard = () => {
         sx={{ mt: { xs: "30px", sm: "40px" } }}
       >
         <Typography
-          variant="h4"
+          variant="h1"
           fontWeight="bold"
           sx={{
-            fontSize: { xs: "20px", sm: "30px" },
+            fontSize: { xs: "20px", sm: "40px" },
           }}
         >
-          <span className="gradient">Discover</span> Inspiring Travel Stories
+          <span className="gradient">Discover & Share </span> - Travel Memories
         </Typography>
       </Box>
     </ProtectedRoute>

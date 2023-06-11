@@ -6,6 +6,7 @@ import LoginForm from "./auth/LoginForm";
 import Loader from "./ui/Loader";
 import ProtectedRoute from "./ProtectedRoute";
 import UserMenu from "./ui/UserMenu";
+import CreatePostForm from "./post/CreatePostForm";
 
 export {
   Navbar,
@@ -16,4 +17,5 @@ export {
   Loader,
   ProtectedRoute,
   UserMenu,
+  CreatePostForm,
 };
