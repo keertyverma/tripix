@@ -1,8 +1,11 @@
+import { useAuth } from "@/providers/auth";
 import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
 const HeroBanner = () => {
+  const { user, loading } = useAuth();
+
   return (
     <Box
       sx={{
@@ -48,7 +51,7 @@ const HeroBanner = () => {
             justifyContent: { xs: "center", sm: "flex-start" },
           }}
         >
-          <Link href="/auth/register">
+          <Link href={!loading && user ? "/dashboard" : "/auth/register"}>
             <Button
               variant="contained"
               color="primary"
