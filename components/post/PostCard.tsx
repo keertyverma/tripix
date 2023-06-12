@@ -4,6 +4,7 @@ import { getLongDate, getUserInitials, getLocation } from "@/utils/helper";
 import {
   Avatar,
   Box,
+  Button,
   Card,
   CardContent,
   Stack,
@@ -14,11 +15,10 @@ import { MdLocationOn, MdOutlineDateRange } from "react-icons/md";
 
 interface Props {
   post: IPost;
+  handleDelete?: (postId: string) => void;
 }
 
-const PostCard = ({ post }: Props) => {
-  const { user } = useAuth();
-
+const PostCard = ({ post, handleDelete }: Props) => {
   return (
     <Card
       sx={{
@@ -68,6 +68,17 @@ const PostCard = ({ post }: Props) => {
             )}
           </Stack>
         </Stack>
+        {handleDelete && (
+          <Button
+            onClick={() => handleDelete(post.id)}
+            sx={{
+              textTransform: "capitalize",
+            }}
+            color="error"
+          >
+            Delete
+          </Button>
+        )}
       </CardContent>
     </Card>
   );

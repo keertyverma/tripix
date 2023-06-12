@@ -4,9 +4,10 @@ import PostCard from "./PostCard";
 
 interface Props {
   posts: IPost[];
+  handleDelete?: (postId: string) => void;
 }
 
-const PostList = ({ posts }: Props) => {
+const PostList = ({ posts, handleDelete }: Props) => {
   return (
     <Box
       sx={{
@@ -25,7 +26,10 @@ const PostList = ({ posts }: Props) => {
       >
         {posts.map((post) => (
           <Grid item key={post.id}>
-            <PostCard post={post} />
+            <PostCard
+              post={post}
+              handleDelete={() => handleDelete && handleDelete(post.id)}
+            />
           </Grid>
         ))}
       </Grid>

@@ -16,8 +16,6 @@ const Dashboard = () => {
     }
   }, [data]);
 
-  console.log("posts  = ", posts);
-
   return (
     <ProtectedRoute>
       <Box
