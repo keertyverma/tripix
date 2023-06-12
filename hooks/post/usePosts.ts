@@ -1,17 +1,6 @@
 import { databaseService } from "@/services/databaseService";
 import { useQuery } from "@tanstack/react-query";
 
-export interface IPost {
-  id: string;
-  title: string;
-  description: string;
-  userId: string;
-  date: string;
-  city: string;
-  country: string;
-  photoUrl: string;
-}
-
 const fetchPosts = () =>
   databaseService.getPosts().then((res) => {
     return res.documents?.map((post) => ({
@@ -19,6 +8,7 @@ const fetchPosts = () =>
       title: post.title,
       description: post.description,
       userId: post.userId,
+      username: post.username,
       date: post.date,
       city: post.city,
       country: post.country,

@@ -31,7 +31,6 @@ const AuthProvider = ({ children }: any) => {
         setUser({ id: res.$id, name: res.name, email: res.email });
       })
       .catch((err) => {
-        // console.log(err);
         setUser(null);
       })
       .finally(() => {

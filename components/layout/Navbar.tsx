@@ -33,6 +33,7 @@ const Navbar = () => {
         <Stack
           direction="row"
           px="10px"
+          py="10px"
           sx={{ gap: { sm: "122px", xs: "40px" } }}
           justifyContent="space-between"
           alignItems="center"

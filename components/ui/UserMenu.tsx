@@ -13,6 +13,7 @@ import Link from "next/link";
 import { MouseEvent, useState } from "react";
 import Logout from "../auth/Logout";
 import { useAuth } from "@/providers/auth";
+import { getUserInitials } from "@/utils/helper";
 
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -48,12 +49,7 @@ const UserMenu = () => {
           }}
         >
           <Avatar sx={{ width: 40, height: 40, bgcolor: "#57CC99" }}>
-            {" "}
-            {user?.name
-              .split(" ")
-              .map((d) => d[0])
-              .join("")
-              .toUpperCase()}
+            {getUserInitials(user?.name)}
           </Avatar>
         </Box>
       </Button>

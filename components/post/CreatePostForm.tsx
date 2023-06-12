@@ -12,7 +12,6 @@ import {
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
 import useAddPost from "@/hooks/post/useAddPost";
 import { useAuth } from "@/providers/auth";
 import { localeService } from "@/services";
@@ -26,11 +25,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import Loader from "../ui/Loader";
-
-interface Country {
-  code: string;
-  name: string;
-}
+import lodash from "lodash";
+import { Country } from "@/entities";
 
 const CreatePostForm = () => {
   const { register, handleSubmit } = useForm();
@@ -71,10 +67,11 @@ const CreatePostForm = () => {
     // get form data
     const postData = {
       userId: user?.id as string,
+      username: user?.name as string,
       title: data.title,
       description: data.description,
       date: date as string,
-      city: data?.city,
+      city: lodash.capitalize(data?.city),
       country: data?.country,
       photoUrl: data["photo-url"][0].name,
     };
@@ -174,8 +171,6 @@ const CreatePostForm = () => {
                   {country.name}
                 </MenuItem>
               ))}
-
-              <MenuItem value="nz">New Zealand</MenuItem>
             </Select>
           </FormControl>
         </Stack>

@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 
 export interface IAddPost {
   userId: string;
+  username: string;
   title: string;
   description: string;
   date: string;
