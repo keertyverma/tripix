@@ -7,19 +7,25 @@ import {
   Select,
   Stack,
   TextField,
+  Typography,
 } from "@mui/material";
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import useAddPost from "@/hooks/post/useAddPost";
 import { useAuth } from "@/providers/auth";
 import { localeService } from "@/services";
+import { storageService } from "@/services/storageService";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AppwriteException } from "appwrite";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import Loader from "../ui/Loader";
 
 interface Country {
   code: string;
@@ -36,9 +42,13 @@ const CreatePostForm = () => {
   );
   const [countries, setContries] = useState<Country[]>([]);
 
+  const router = useRouter();
+  const addPost = useAddPost();
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     localeService.getCountries().then((res) => {
-      console.log("res = ", res);
       setContries(res.countries);
     });
   }, []);
@@ -57,25 +67,52 @@ const CreatePostForm = () => {
     }
   };
 
-  return (
-    <form
-      onSubmit={handleSubmit((data) => {
-        const postData = {
-          userId: user?.id,
-          title: data.title,
-          description: data?.description,
-          date: date,
-          city: data?.city,
-          country: data?.country,
-          photoUrl: data["photo-url"][0],
-        };
+  const handleFormSubmit = handleSubmit(async (data) => {
+    // get form data
+    const postData = {
+      userId: user?.id as string,
+      title: data.title,
+      description: data.description,
+      date: date as string,
+      city: data?.city,
+      country: data?.country,
+      photoUrl: data["photo-url"][0].name,
+    };
 
-        console.log("form data = ", data);
-        console.log("postData = ", postData);
-        // store data
-        // navigate to dashboard
-      })}
-    >
+    try {
+      // upload photo
+      setIsLoading(true);
+      const uploadImgRes = await storageService.uploadImage(
+        data["photo-url"][0]
+      );
+      const photoId = uploadImgRes.$id;
+
+      // get preview image url
+      postData.photoUrl = storageService.getPreviewImage(photoId).href;
+
+      // create new post
+      addPost.mutate(postData, {
+        onSuccess() {
+          router.push("/dashboard");
+        },
+        async onError(error) {
+          const appWriteError = error as AppwriteException;
+          setError(appWriteError.message);
+
+          // delete uploaded image
+          await storageService.deleteImage(photoId);
+        },
+      });
+    } catch (err) {
+      const appWriteError = err as AppwriteException;
+      setError(appWriteError.message);
+    } finally {
+      setIsLoading(false);
+    }
+  });
+
+  return (
+    <form onSubmit={handleFormSubmit}>
       <Stack
         sx={{
           width: { xs: "300px", sm: "500px" },
@@ -83,6 +120,11 @@ const CreatePostForm = () => {
           mt: { xs: "15px", sm: "20px" },
         }}
       >
+        {error && (
+          <Typography variant="subtitle1" color="error" textAlign="center">
+            {error}
+          </Typography>
+        )}
         <TextField
           {...register("title")}
           name="title"
@@ -182,6 +224,7 @@ const CreatePostForm = () => {
           alignItems="center"
           mt={1}
         >
+          {isLoading && <Loader />}
           <Button
             variant="contained"
             color="primary"
@@ -191,6 +234,7 @@ const CreatePostForm = () => {
               fontSize: { xs: "15px", sm: "20px" },
             }}
             type="submit"
+            disabled={isLoading}
           >
             Add
           </Button>

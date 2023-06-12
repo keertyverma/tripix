@@ -1,7 +1,7 @@
 import { databaseService } from "@/services/databaseService";
 import { useQuery } from "@tanstack/react-query";
 
-export interface Post {
+export interface IPost {
   id: string;
   title: string;
   description: string;

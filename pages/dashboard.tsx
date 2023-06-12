@@ -1,17 +1,18 @@
 import { Box, Typography } from "@mui/material";
 
 import { Loader, ProtectedRoute } from "@/components";
-import usePosts, { Post } from "@/hooks/post/usePosts";
-import { useState, useEffect } from "react";
+import usePosts, { IPost } from "@/hooks/post/usePosts";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
-  const [posts, setPosts] = useState<Post[] | []>([]);
+  const [posts, setPosts] = useState<IPost[] | []>([]);
 
   const { data, isFetching, error } = usePosts();
 
   useEffect(() => {
     if (data) {
-      setPosts((prev) => [...prev, ...data]);
+      setPosts([...data]);
     }
   }, [data]);
 
@@ -36,7 +37,15 @@ const Dashboard = () => {
           <span className="gradient">Discover & Share </span> - Travel Memories
         </Typography>
 
-        <Box sx={{ display: "flex", gap: "20px" }} mt={2}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "20px",
+            flexDirection: { xs: "column", sm: "row" },
+            flexWrap: "nowrap",
+          }}
+          mt={2}
+        >
           {isFetching && <Loader />}
 
           {error ? (
@@ -52,7 +61,12 @@ const Dashboard = () => {
               <Typography>date = {post.date}</Typography>
               <Typography>city = {post.city}</Typography>
               <Typography>country = {post.country}</Typography>
-              <Typography>photoURl = {post.photoUrl}</Typography>
+              <Image
+                src={`${post.photoUrl}`}
+                alt={post.title}
+                width={200}
+                height={200}
+              />
             </Box>
           ))}
         </Box>
