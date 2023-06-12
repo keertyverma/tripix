@@ -1,5 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -17,12 +18,12 @@ const Footer = () => {
         >
           <Typography
             variant="subtitle1"
-            sx={{ fontSize: { xs: "10px", sm: "15px" } }}
+            sx={{ fontSize: { xs: "15px", sm: "18px" } }}
           >
-            Made by{" "}
-            <a href="https://github.com/keertyverma" className="footer-link">
+            Built by{" "}
+            <Link className="footer-link" href="https://github.com/keertyverma">
               Keerty 👩‍💻
-            </a>{" "}
+            </Link>
           </Typography>
           <Stack
             direction="row"

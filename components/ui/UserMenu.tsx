@@ -40,9 +40,11 @@ const UserMenu = () => {
           sx={{
             display: "flex",
             alignItems: "center",
+            justifyContent: "center",
             boxShadow: "0px 6px 4px rgba(0, 0, 0, 0.1)",
             padding: "5px",
             borderRadius: "50%",
+            mb: "3px",
           }}
         >
           <Avatar sx={{ width: 40, height: 40, bgcolor: "#57CC99" }}>

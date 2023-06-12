@@ -1,7 +1,12 @@
-import { HeroBanner } from "@/components";
+import { HeroBanner, Footer } from "@/components";
 
 const HomePage = () => {
-  return <HeroBanner />;
+  return (
+    <>
+      <HeroBanner />
+      <Footer />
+    </>
+  );
 };
 
 export default HomePage;

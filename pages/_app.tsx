@@ -24,15 +24,9 @@ export default function App({ Component, pageProps }: AppProps) {
             />
             <title>Tripix - Share Travel Memories</title>
           </Head>
-          <Box
-            sx={{
-              width: { xl: "1488px" },
-            }}
-            m="auto"
-          >
+          <Box m="auto">
             <Navbar />
             <Component {...pageProps} />
-            <Footer />
           </Box>
         </QueryClientProvider>
       </ThemeProvider>
