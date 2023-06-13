@@ -8,14 +8,16 @@
 
 ![Vercel](https://vercelbadge.vercel.app/api/keertyverma/tripix) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/keertyverma/tripix/blob/main/LICENSE)
 
+Deployed Live -> https://tripix.vercel.app
+
 Welcome to <strong>Tripix</strong>, your go-to platform for sharing and discovering stunning travel memories. Capture and share your adventures while exploring beautiful memories shared by fellow travelers
 
 With Tripix, you have full control over your posts - create, update, and delete them with ease. Seamlessly authenticate using email and password or simply sign in with Google.
 <br />Join Tripix today and embark on a journey of unforgettable experiences!
 
-## Tech Stack 👩‍💻
+https://github.com/keertyverma/tripix/assets/13656449/c65cf102-526d-4839-aec3-449d543dd108
 
----
+## Tech Stack 👩‍💻
 
 - [NextJS](https://nextjs.org/) - A React framework
 - [React](https://react.dev/) - A library to create dynamic and interactive web app
@@ -26,8 +28,6 @@ With Tripix, you have full control over your posts - create, update, and delete 
 - HTML5 and CSS3
 
 ## Features 🪄
-
----
 
 ### <strong>User Authentication 🔒</strong>
 
@@ -49,9 +49,9 @@ Users can edit and update or delete their existing memories.
 
 The application is designed to be responsive and provide an optimal user experience across different devices and screen sizes.
 
-## Installation
+![Desktop-Dashboard](https://github.com/keertyverma/tripix/assets/13656449/5eb3d9d4-5ce3-48af-ad1d-3387aff6ec4d)
 
----
+## Installation
 
 #### To get started and run the Tripix web application locally, follow these simple steps:
 
@@ -89,8 +89,6 @@ The application is designed to be responsive and provide an optimal user experie
 
 ## Contributing ✨
 
----
-
 Contributions from the community are always welcome to make Tripix even better.
 
 To contribute, please follow these steps
@@ -102,8 +100,6 @@ To contribute, please follow these steps
 5. Push your changes to your forked repository and raise PR on this repository
 
 ## Support 💖👩‍💻
-
----
 
 Support the project by giving it a star ⭐.
 <br> Feel free to reach out if you have any questions or suggestions.
