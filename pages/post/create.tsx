@@ -13,10 +13,11 @@ const Create = () => {
       position="relative"
     >
       <Typography
-        variant="h3"
-        component="h1"
+        variant="h1"
         fontWeight="bold"
-        sx={{ fontSize: { xs: "25px", sm: "35px" } }}
+        sx={{
+          fontSize: { xs: "25px", sm: "40px" },
+        }}
         textAlign="center"
       >
         <span className="gradient">Create Memory</span>

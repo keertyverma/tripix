@@ -117,7 +117,13 @@ const UpdatePostForm = ({ post }: Props) => {
             border="1px solid rgba(31, 110, 140, 0.2)"
             boxShadow="0px 6px 4px rgba(0, 0, 0, 0.1)"
           >
-            <Image src={post.photoUrl} alt="Preview" width={350} height={350} />
+            <Image
+              src={post.photoUrl}
+              alt="Preview"
+              width={350}
+              height={350}
+              className="image-fit"
+            />
           </Box>
         </Box>
         <TextField

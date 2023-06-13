@@ -19,6 +19,7 @@ import { MdLocationOn, MdOutlineDateRange } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/providers/auth";
 import { useState } from "react";
+import Link from "next/link";
 
 interface Props {
   post: IPost;
@@ -48,18 +49,25 @@ const PostCard = ({ post, handleDelete, handleEdit }: Props) => {
       sx={{
         border: "1px solid rgba(31, 110, 140, 0.2)",
         boxShadow: "-10px 15px 8px rgba(31, 110, 140, 0.2)",
-        // boxShadow: "-10px 10px 10px 1px rgba(31, 110, 140, 0.2)",
-        // boxShadow: "-14px 6px 13px -5px rgba(173,173,173,1)",
       }}
     >
-      <Box
-        padding={1.5}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Image src={post.photoUrl} alt={post.title} width={300} height={300} />
-      </Box>
+      <Link href={`/post/details/?id=${post.id}`}>
+        <Box
+          padding={1.5}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Image
+            src={post.photoUrl}
+            alt={post.title}
+            width={300}
+            height={300}
+            className="image-fit"
+          />
+        </Box>
+      </Link>
+
       <CardContent
         sx={{
           p: "0 12px",

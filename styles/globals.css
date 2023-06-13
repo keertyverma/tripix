@@ -88,3 +88,7 @@ a {
 .login-form input {
   padding: 12px !important;
 }
+
+.image-fit {
+  object-fit: cover;
+}

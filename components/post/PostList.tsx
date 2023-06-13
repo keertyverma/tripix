@@ -1,6 +1,7 @@
 import { IPost } from "@/entities";
 import { Box, Grid } from "@mui/material";
 import PostCard from "./PostCard";
+import Link from "next/link";
 
 interface Props {
   posts: IPost[];
@@ -26,7 +27,7 @@ const PostList = ({ posts, handleDelete, handleEdit }: Props) => {
         columnSpacing={6}
         rowSpacing={4}
       >
-        {posts.map((post) => (
+        {posts?.map((post) => (
           <Grid item key={post.id}>
             <PostCard
               post={post}

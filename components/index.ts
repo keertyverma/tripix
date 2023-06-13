@@ -9,6 +9,7 @@ import UserMenu from "./ui/UserMenu";
 import CreatePostForm from "./post/CreatePostForm";
 import PostList from "./post/PostList";
 import UpdatePostForm from "./post/UpdatePostForm";
+import DisplayPost from "./post/DisplayPost";
 
 export {
   Navbar,
@@ -22,4 +23,5 @@ export {
   CreatePostForm,
   PostList,
   UpdatePostForm,
+  DisplayPost,
 };

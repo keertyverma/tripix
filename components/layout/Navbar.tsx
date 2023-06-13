@@ -38,7 +38,10 @@ const Navbar = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Link href="/" style={{ textDecoration: "none" }}>
+          <Link
+            href={user ? "/dashboard" : "/"}
+            style={{ textDecoration: "none" }}
+          >
             <Stack
               direction="row"
               gap="5px"

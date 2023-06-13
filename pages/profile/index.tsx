@@ -24,7 +24,6 @@ const UserProfile = () => {
   }, [user, data]);
 
   const handleDelete = (postId: string) => {
-    console.log("delete post with id = ", postId);
     deletePost.mutate(postId, {
       onSuccess() {
         setUserPosts(userPosts.filter((post) => post.id !== postId));
@@ -50,7 +49,12 @@ const UserProfile = () => {
       position="relative"
     >
       <Hidden smUp>
-        <Box width="100%" display="flex" justifyContent="flex-end">
+        <Box
+          width="100%"
+          display="flex"
+          justifyContent="flex-end"
+          marginRight={4}
+        >
           <Link href="/dashboard">
             <Button
               variant="contained"
@@ -92,12 +96,13 @@ const UserProfile = () => {
         variant="h3"
         component="h1"
         fontWeight="bold"
-        sx={{ fontSize: { xs: "25px", sm: "40px" } }}
+        sx={{ fontSize: { xs: "20px", sm: "35px" } }}
         textAlign="center"
       >
-        <span className="gradient">User Profile</span>
+        Relive Your{" "}
+        <span className="gradient">Unforgettable Travel Memories</span>
       </Typography>
-      <Typography variant="h6">
+      <Typography variant="h6" sx={{ fontSize: { xs: "18px", sm: "25px" } }}>
         Update, Delete, and Manage with Ease!
       </Typography>
 

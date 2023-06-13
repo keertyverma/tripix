@@ -145,6 +145,7 @@ const CreatePostForm = () => {
                 alt="Preview"
                 width={350}
                 height={350}
+                className="image-fit"
               />
             </Box>
           </Box>
