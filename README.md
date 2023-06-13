@@ -1,4 +1,12 @@
+<p align="center">
+  <a href="https://tripix.vercel.app/" target="blank"><img src="public\images\logo.png" width="120" alt="tripix" /></a>
+</p>
+
+<!-- [![Tripix logo](public\images\logo.png)](https://tripix.vercel.app) -->
+
 # Tripix - Share Travel Memories ✨🖼️📸
+
+![Vercel](https://vercelbadge.vercel.app/api/keertyverma/tripix) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/keertyverma/tripix/blob/main/LICENSE)
 
 Welcome to <strong>Tripix</strong>, your go-to platform for sharing and discovering stunning travel memories. Capture and share your adventures while exploring beautiful memories shared by fellow travelers
 
@@ -15,8 +23,9 @@ With Tripix, you have full control over your posts - create, update, and delete 
 - [Appwrite](https://appwrite.io/) - An open-source backend platform that simplifies the development of Web, Mobile, and Flutter applications.
 - [Material UI](https://mui.com/) - React UI component library
 - [Vercel](https://vercel.com/) - A cloud platform for deploying
+- HTML5 and CSS3
 
-## Feature 🪄
+## Features 🪄
 
 ---
 
@@ -59,7 +68,7 @@ The application is designed to be responsive and provide an optimal user experie
    npm install
    ```
 
-3. Export enviornment variable
+3. Export enviornment variable, based on your sytem
 
    ```
     NEXT_PUBLIC_APPWRITE_PROJECT_ID=<your-project-id>
@@ -89,10 +98,8 @@ To contribute, please follow these steps
 1. Fork the repository on GitHub.
 2. Clone your forked repository:
 3. Create a new branch from the `main` branch.
-
 4. Make the necessary changes and commit them with descriptive commit messages.
-
-5. Push your changes to your forked repository:
+5. Push your changes to your forked repository and raise PR on this repository
 
 ## Support 💖👩‍💻
 
