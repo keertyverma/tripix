@@ -27,6 +27,13 @@ const databaseService = {
       ]
     );
   },
+
+  deletePostById: (postId: string) =>
+    database.deleteDocument(
+      databaseId as string,
+      collectionId as string,
+      postId
+    ),
 };
 
 export { databaseService };

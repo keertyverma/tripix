@@ -26,10 +26,7 @@ const PostList = ({ posts, handleDelete }: Props) => {
       >
         {posts.map((post) => (
           <Grid item key={post.id}>
-            <PostCard
-              post={post}
-              handleDelete={() => handleDelete && handleDelete(post.id)}
-            />
+            <PostCard post={post} handleDelete={handleDelete} />
           </Grid>
         ))}
       </Grid>

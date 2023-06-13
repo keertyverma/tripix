@@ -1,14 +1,18 @@
-import { useAuth } from "@/providers/auth";
-import { Box, Typography, Container, Stack } from "@mui/material";
-import { IPost } from "@/entities";
-import { useState, useEffect } from "react";
-import usePosts from "@/hooks/post/usePosts";
 import { PostList } from "@/components";
+import { IPost } from "@/entities";
+import useDeletePost from "@/hooks/post/useDeletePost";
+import usePosts from "@/hooks/post/usePosts";
+import { useAuth } from "@/providers/auth";
+import { Box, Button, Hidden, Typography } from "@mui/material";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const UserProfile = () => {
-  const { user } = useAuth();
-  const { data, isFetching, error } = usePosts();
   const [userPosts, setUserPosts] = useState<IPost[] | []>([]);
+
+  const { user } = useAuth();
+  const { data } = usePosts();
+  const deletePost = useDeletePost();
 
   useEffect(() => {
     if (user && data) {
@@ -19,6 +23,14 @@ const UserProfile = () => {
 
   const handleDelete = (postId: string) => {
     console.log("delete post with id = ", postId);
+    deletePost.mutate(postId, {
+      onSuccess() {
+        setUserPosts(userPosts.filter((post) => post.id !== postId));
+      },
+      onError(err) {
+        console.log("err = ", err);
+      },
+    });
   };
 
   return (
@@ -29,7 +41,47 @@ const UserProfile = () => {
       flexDirection="column"
       sx={{ mt: { xs: "30px", sm: "40px" } }}
       gap={1}
+      position="relative"
     >
+      <Hidden smUp>
+        <Box width="100%" display="flex" justifyContent="flex-end">
+          <Link href="/dashboard">
+            <Button
+              variant="contained"
+              size="small"
+              sx={{
+                textTransform: "capitalize",
+                borderRadius: "15px",
+              }}
+            >
+              Dashboard
+            </Button>
+          </Link>
+        </Box>
+      </Hidden>
+      <Hidden smDown>
+        <Box
+          sx={{
+            position: { sm: "absolute" },
+            top: "0",
+            left: "0",
+            marginLeft: "40px",
+          }}
+        >
+          <Link href="/dashboard">
+            <Button
+              variant="contained"
+              sx={{
+                textTransform: "capitalize",
+                borderRadius: "15px",
+              }}
+            >
+              Back to Dashboard
+            </Button>
+          </Link>
+        </Box>
+      </Hidden>
+
       <Typography
         variant="h3"
         component="h1"
@@ -39,18 +91,10 @@ const UserProfile = () => {
       >
         <span className="gradient">User Profile</span>
       </Typography>
-      <Typography variant="h5">
-        Welcome to your personalized profile page
+      <Typography variant="h6">
+        Update, Delete, and Manage with Ease!
       </Typography>
-      {user && (
-        <Stack
-          justifyContent="flex-start"
-          sx={{ mt: { xs: "10px", sm: "20px" } }}
-        >
-          <Typography variant="h6">Name : {user?.name}</Typography>
-          <Typography variant="h6">Email : {user?.email}</Typography>
-        </Stack>
-      )}
+
       <PostList posts={userPosts} handleDelete={handleDelete} />
     </Box>
   );

@@ -1,17 +1,24 @@
 import { IPost } from "@/entities";
-import { useAuth } from "@/providers/auth";
-import { getLongDate, getUserInitials, getLocation } from "@/utils/helper";
+import { getLocation, getLongDate, getUserInitials } from "@/utils/helper";
 import {
   Avatar,
   Box,
   Button,
   Card,
   CardContent,
+  Dialog,
   Stack,
   Typography,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
 } from "@mui/material";
 import Image from "next/image";
 import { MdLocationOn, MdOutlineDateRange } from "react-icons/md";
+import { usePathname } from "next/navigation";
+import { useAuth } from "@/providers/auth";
+import { useState } from "react";
 
 interface Props {
   post: IPost;
@@ -19,6 +26,22 @@ interface Props {
 }
 
 const PostCard = ({ post, handleDelete }: Props) => {
+  const pathName = usePathname();
+  const { user } = useAuth();
+  const [open, setOpen] = useState(false);
+
+  const handleDeleteClick = () => {
+    setOpen(true);
+  };
+
+  const handleConfirmation = (confirmed: boolean) => {
+    setOpen(false);
+    if (confirmed && handleDelete) {
+      console.log("deleting post");
+      handleDelete(post.id);
+    }
+  };
+
   return (
     <Card
       sx={{
@@ -68,16 +91,66 @@ const PostCard = ({ post, handleDelete }: Props) => {
             )}
           </Stack>
         </Stack>
-        {handleDelete && (
-          <Button
-            onClick={() => handleDelete(post.id)}
-            sx={{
-              textTransform: "capitalize",
-            }}
-            color="error"
-          >
-            Delete
-          </Button>
+        {user?.id === post.userId && pathName === "/profile" && (
+          <Stack direction="row" gap={2} mt={2} justifyContent="flex-start">
+            <Button
+              variant="outlined"
+              size="small"
+              sx={{
+                textTransform: "capitalize",
+                fontWeight: "bold",
+              }}
+              color="primary"
+            >
+              Edit
+            </Button>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={handleDeleteClick}
+              sx={{
+                // textTransform: "capitalize",
+                fontWeight: "bold",
+              }}
+              color="error"
+            >
+              Delete
+            </Button>
+            <Dialog
+              open={open}
+              onClose={() => handleConfirmation(false)}
+              aria-labelledby="delete-dialog-title"
+              aria-describedby="delete-dialog-description"
+            >
+              <DialogTitle id="delete-dialog-title">
+                Confirm Deletion
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="delete-dialog-description">
+                  Are you sure you want to delete this post?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={() => handleConfirmation(false)}
+                  sx={{
+                    textTransform: "capitalize",
+                  }}
+                >
+                  No
+                </Button>
+                <Button
+                  onClick={() => handleConfirmation(true)}
+                  sx={{
+                    textTransform: "capitalize",
+                  }}
+                  autoFocus
+                >
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Stack>
         )}
       </CardContent>
     </Card>
