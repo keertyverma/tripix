@@ -14,3 +14,14 @@ export interface Country {
   code: string;
   name: string;
 }
+
+export interface IUpdatePost {
+  id: string;
+  data: {
+    title: string;
+    description: string;
+    date: string;
+    city: string;
+    country: string;
+  };
+}

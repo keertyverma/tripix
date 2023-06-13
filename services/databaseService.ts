@@ -34,6 +34,17 @@ const databaseService = {
       collectionId as string,
       postId
     ),
+
+  getPostById: (postId: string) =>
+    database.getDocument(databaseId as string, collectionId as string, postId),
+
+  updatePost: (postId: string, data: any) =>
+    database.updateDocument(
+      databaseId as string,
+      collectionId as string,
+      postId,
+      data
+    ),
 };
 
 export { databaseService };

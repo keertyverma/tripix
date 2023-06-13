@@ -23,9 +23,10 @@ import { useState } from "react";
 interface Props {
   post: IPost;
   handleDelete?: (postId: string) => void;
+  handleEdit?: (postId: string) => void;
 }
 
-const PostCard = ({ post, handleDelete }: Props) => {
+const PostCard = ({ post, handleDelete, handleEdit }: Props) => {
   const pathName = usePathname();
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
@@ -101,6 +102,7 @@ const PostCard = ({ post, handleDelete }: Props) => {
                 fontWeight: "bold",
               }}
               color="primary"
+              onClick={() => handleEdit?.(post.id)}
             >
               Edit
             </Button>
@@ -109,7 +111,7 @@ const PostCard = ({ post, handleDelete }: Props) => {
               size="small"
               onClick={handleDeleteClick}
               sx={{
-                // textTransform: "capitalize",
+                textTransform: "capitalize",
                 fontWeight: "bold",
               }}
               color="error"

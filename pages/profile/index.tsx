@@ -5,6 +5,7 @@ import usePosts from "@/hooks/post/usePosts";
 import { useAuth } from "@/providers/auth";
 import { Box, Button, Hidden, Typography } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const UserProfile = () => {
@@ -13,6 +14,7 @@ const UserProfile = () => {
   const { user } = useAuth();
   const { data } = usePosts();
   const deletePost = useDeletePost();
+  const router = useRouter();
 
   useEffect(() => {
     if (user && data) {
@@ -31,6 +33,10 @@ const UserProfile = () => {
         console.log("err = ", err);
       },
     });
+  };
+
+  const handleEdit = (postId: string) => {
+    router.push(`/post/update?id=${postId}`);
   };
 
   return (
@@ -95,7 +101,11 @@ const UserProfile = () => {
         Update, Delete, and Manage with Ease!
       </Typography>
 
-      <PostList posts={userPosts} handleDelete={handleDelete} />
+      <PostList
+        posts={userPosts}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+      />
     </Box>
   );
 };

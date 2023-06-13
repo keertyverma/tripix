@@ -8,6 +8,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import UserMenu from "./ui/UserMenu";
 import CreatePostForm from "./post/CreatePostForm";
 import PostList from "./post/PostList";
+import UpdatePostForm from "./post/UpdatePostForm";
 
 export {
   Navbar,
@@ -20,4 +21,5 @@ export {
   UserMenu,
   CreatePostForm,
   PostList,
+  UpdatePostForm,
 };
