@@ -91,7 +91,7 @@ const UpdatePostForm = ({ post }: Props) => {
     <form onSubmit={handleFormSubmit}>
       <Stack
         sx={{
-          width: { xs: "300px", sm: "500px" },
+          width: { xs: "350px", sm: "500px" },
           gap: { xs: "10px", sm: "10px" },
           mt: { xs: "15px", sm: "20px" },
         }}
@@ -114,6 +114,7 @@ const UpdatePostForm = ({ post }: Props) => {
             justifyContent="center"
             alignItems="center"
             padding={1}
+            border="1px solid rgba(31, 110, 140, 0.2)"
             boxShadow="0px 6px 4px rgba(0, 0, 0, 0.1)"
           >
             <Image src={post.photoUrl} alt="Preview" width={350} height={350} />

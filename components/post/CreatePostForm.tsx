@@ -27,10 +27,11 @@ import React, { useEffect } from "react";
 import Loader from "../ui/Loader";
 import lodash from "lodash";
 import { Country } from "@/entities";
+import dayjs, { Dayjs } from "dayjs";
 
 const CreatePostForm = () => {
   const { register, handleSubmit } = useForm();
-  const [date, setDate] = useState<string | null>(null);
+  const [date, setDate] = useState<Dayjs | null>(dayjs());
   const { user } = useAuth();
 
   const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(
@@ -70,7 +71,7 @@ const CreatePostForm = () => {
       username: user?.name as string,
       title: data.title,
       description: data.description,
-      date: date as string,
+      date: date?.toISOString() as string,
       city: lodash.capitalize(data?.city),
       country: data?.country,
       photoUrl: data["photo-url"][0].name,
@@ -112,7 +113,7 @@ const CreatePostForm = () => {
     <form onSubmit={handleFormSubmit}>
       <Stack
         sx={{
-          width: { xs: "300px", sm: "500px" },
+          width: { xs: "350px", sm: "500px" },
           gap: { xs: "10px", sm: "10px" },
           mt: { xs: "15px", sm: "20px" },
         }}
@@ -122,6 +123,46 @@ const CreatePostForm = () => {
             {error}
           </Typography>
         )}
+        {imagePreview && (
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            sx={{ marginBottom: { xs: "10px", sm: "20px" } }}
+          >
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              padding={1}
+              border="1px solid rgba(31, 110, 140, 0.2)"
+              boxShadow="0px 6px 4px rgba(0, 0, 0, 0.1)"
+            >
+              <Image
+                src={imagePreview.toString()}
+                alt="Preview"
+                width={350}
+                height={350}
+              />
+            </Box>
+          </Box>
+        )}
+        <InputLabel htmlFor="photo-url">
+          <Typography>Add Photo</Typography>
+        </InputLabel>
+        <TextField
+          {...register("photo-url")}
+          name="photo-url"
+          id="photo-url"
+          type="file"
+          variant="standard"
+          inputProps={{ accept: "image/*" }}
+          onChange={handleFileUpload}
+          required
+        />
+
         <TextField
           {...register("title")}
           name="title"
@@ -140,9 +181,7 @@ const CreatePostForm = () => {
           <DatePicker
             label="Date"
             value={date}
-            onChange={(newValue) =>
-              setDate(new Date((newValue as string).toString()).toISOString())
-            }
+            onChange={(newValue) => setDate(newValue)}
           />
         </LocalizationProvider>
         <Stack
@@ -175,41 +214,6 @@ const CreatePostForm = () => {
           </FormControl>
         </Stack>
 
-        <InputLabel htmlFor="photo-url">Add Photo</InputLabel>
-        <TextField
-          {...register("photo-url")}
-          name="photo-url"
-          id="photo-url"
-          type="file"
-          variant="standard"
-          inputProps={{ accept: "image/*" }}
-          onChange={handleFileUpload}
-          required
-        />
-        {imagePreview && (
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              padding={1}
-              boxShadow="0px 6px 4px rgba(0, 0, 0, 0.1)"
-            >
-              <Image
-                src={imagePreview.toString()}
-                alt="Preview"
-                width={200}
-                height={200}
-              />
-            </Box>
-          </Box>
-        )}
         <Stack
           direction="row"
           sx={{
@@ -218,6 +222,7 @@ const CreatePostForm = () => {
           justifyContent="center"
           alignItems="center"
           mt={1}
+          mb={3}
         >
           {isLoading && <Loader />}
           <Button
