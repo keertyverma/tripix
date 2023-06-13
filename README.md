@@ -17,6 +17,11 @@ With Tripix, you have full control over your posts - create, update, and delete 
 
 https://github.com/keertyverma/tripix/assets/13656449/c65cf102-526d-4839-aec3-449d543dd108
 
+## Article
+
+Read the blog on Hashnode to know more about the project
+https://learnwithkeerty.hashnode.dev/tripix
+
 ## Tech Stack 👩‍💻
 
 - [NextJS](https://nextjs.org/) - A React framework
