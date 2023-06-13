@@ -23,7 +23,7 @@ const Dashboard = () => {
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        sx={{ mt: { xs: "30px", sm: "40px" } }}
+        sx={{ mt: { xs: "30px", sm: "40px" }, mb: { xs: "20px", sm: "40px" } }}
       >
         <Typography
           variant="h1"

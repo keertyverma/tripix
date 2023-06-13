@@ -48,50 +48,6 @@ const UserProfile = () => {
       gap={1}
       position="relative"
     >
-      <Hidden smUp>
-        <Box
-          width="100%"
-          display="flex"
-          justifyContent="flex-end"
-          marginRight={4}
-        >
-          <Link href="/dashboard">
-            <Button
-              variant="contained"
-              size="small"
-              sx={{
-                textTransform: "capitalize",
-                borderRadius: "15px",
-              }}
-            >
-              Dashboard
-            </Button>
-          </Link>
-        </Box>
-      </Hidden>
-      <Hidden smDown>
-        <Box
-          sx={{
-            position: { sm: "absolute" },
-            top: "0",
-            left: "0",
-            marginLeft: "40px",
-          }}
-        >
-          <Link href="/dashboard">
-            <Button
-              variant="contained"
-              sx={{
-                textTransform: "capitalize",
-                borderRadius: "15px",
-              }}
-            >
-              Back to Dashboard
-            </Button>
-          </Link>
-        </Box>
-      </Hidden>
-
       <Typography
         variant="h3"
         component="h1"
@@ -102,10 +58,6 @@ const UserProfile = () => {
         Relive Your{" "}
         <span className="gradient">Unforgettable Travel Memories</span>
       </Typography>
-      <Typography variant="h6" sx={{ fontSize: { xs: "18px", sm: "25px" } }}>
-        Update, Delete, and Manage with Ease!
-      </Typography>
-
       <PostList
         posts={userPosts}
         handleDelete={handleDelete}

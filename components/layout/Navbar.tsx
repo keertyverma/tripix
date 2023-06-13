@@ -73,7 +73,7 @@ const Navbar = () => {
                 fontSize="24px"
                 alignItems="flex-end"
                 justifyContent="space-between"
-                sx={{ gap: { lg: "120px", md: "100px", sm: "50px" } }}
+                sx={{ gap: { sm: "50px" } }}
               >
                 <Box
                   sx={{
@@ -87,7 +87,7 @@ const Navbar = () => {
                       size="medium"
                       color="primary"
                       sx={{
-                        borderRadius: "9999px",
+                        borderRadius: "10px",
                         textTransform: "capitalize",
                         fontSize: "18px",
                       }}
@@ -96,7 +96,6 @@ const Navbar = () => {
                     </Button>
                   </Link>
                 </Box>
-
                 <UserMenu />
               </Stack>
             ) : (

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
@@ -214,11 +215,11 @@ const CreatePostForm = () => {
             </Select>
           </FormControl>
         </Stack>
-
+        <Divider />
         <Stack
           direction="row"
           sx={{
-            gap: { xs: "10px", sm: "15px" },
+            gap: { xs: "20px", sm: "40px" },
           }}
           justifyContent="center"
           alignItems="center"

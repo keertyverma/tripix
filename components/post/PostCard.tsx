@@ -73,9 +73,11 @@ const PostCard = ({ post, handleDelete, handleEdit }: Props) => {
           p: "0 12px",
         }}
       >
-        <Typography variant="subtitle1" fontWeight="700">
-          {post.title}
-        </Typography>
+        <Box sx={{ overflow: "hidden", whiteSpace: "nowrap" }} width={300}>
+          <Typography variant="subtitle1" fontWeight="700">
+            {post.title}
+          </Typography>
+        </Box>
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -92,6 +94,7 @@ const PostCard = ({ post, handleDelete, handleEdit }: Props) => {
               <MdOutlineDateRange color="gray" size={15} />{" "}
               {getLongDate(post.date)}
             </Typography>
+
             {(post.city || post.country) && (
               <Typography variant="subtitle2">
                 <MdLocationOn color="#811a18" size={15} />{" "}
