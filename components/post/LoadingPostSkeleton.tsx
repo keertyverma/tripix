@@ -16,10 +16,10 @@ const LoadingPostSkeleton = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        width: { sm: "87%" },
       }}
       mt={4}
       px={10}
-      width={"87%"}
     >
       <Grid
         container

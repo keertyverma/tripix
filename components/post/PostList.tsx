@@ -15,10 +15,10 @@ const PostList = ({ posts, handleDelete, handleEdit }: Props) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        width: { sm: "85%" },
       }}
       mt={4}
       px={10}
-      width={"85%"}
     >
       <Grid
         container
