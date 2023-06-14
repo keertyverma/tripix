@@ -3,7 +3,7 @@ import { IPost } from "@/entities";
 import useDeletePost from "@/hooks/post/useDeletePost";
 import usePosts from "@/hooks/post/usePosts";
 import { useAuth } from "@/providers/auth";
-import { Box, Button, Hidden, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -85,6 +85,39 @@ const UserProfile = () => {
         <span className="gradient">Unforgettable Travel Memories</span>
       </Typography>
       <SearchInput onSearch={handleSearch} onReset={handleReset} />
+
+      {userPosts.length === 0 && (
+        <Box
+          mt="30vh"
+          sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
+        >
+          <Typography fontSize={{ xs: "15px", sm: "20px" }}>
+            No memories created. Go ahead and start creating! 😎
+          </Typography>
+          <Box
+            sx={{
+              alignSelf: "center",
+              justifySelf: "center",
+            }}
+          >
+            <Link href="/post/create">
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                sx={{
+                  borderRadius: "10px",
+                  textTransform: "capitalize",
+                  fontSize: { xs: "14px", sm: "16px" },
+                }}
+              >
+                Create
+              </Button>
+            </Link>
+          </Box>
+        </Box>
+      )}
+
       {searchText ? (
         <ShowSearchedPost
           searchText={searchText}
