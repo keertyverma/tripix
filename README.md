@@ -36,25 +36,25 @@ https://learnwithkeerty.hashnode.dev/tripix
 
 ### <strong>User Authentication 🔒</strong>
 
-Users can register and log in using their email and password. Additionally, they have the option to sign in using their Google account.
+User can register and log in using their email and password. Additionally, they have the option to sign in using their Google account.
 
 ### <strong>Memory Feed 👯‍♀️🪄📍</strong>
 
-Users can explore a feed of beautiful travel memories shared by other users and get inspired.
+Feed is a dashboard with collections of stunning travel memories shared by fellow travellers. User can explore and search posts.
 
 ### <strong>Create Memories 📷📸🖼️</strong>
 
-Users can create and share their own travel memories by uploading photos, adding captions, date, location and travel experience.
+User can create and share their own travel memories by uploading photos, adding captions, date, location and travel experience.
 
 ### <strong>Update and Delete Memories 🖋️🗑️</strong>
 
-Users can edit and update or delete their existing memories.
+User can edit and update or delete their existing memories.
 
 ### <strong>Responsive Design 📱💻</strong>
 
 The application is designed to be responsive and provide an optimal user experience across different devices and screen sizes.
 
-![Desktop-Dashboard](https://github.com/keertyverma/tripix/assets/13656449/5eb3d9d4-5ce3-48af-ad1d-3387aff6ec4d)
+![Desktop-Dashboard](https://github.com/keertyverma/tripix/assets/13656449/d6411919-9bbc-4142-ab57-08835f4d838a)
 
 ## Installation
 
