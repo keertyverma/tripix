@@ -1,4 +1,4 @@
-import { PostList } from "@/components";
+import { PostList, SearchInput, ShowSearchedPost } from "@/components";
 import { IPost } from "@/entities";
 import useDeletePost from "@/hooks/post/useDeletePost";
 import usePosts from "@/hooks/post/usePosts";
@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 
 const UserProfile = () => {
   const [userPosts, setUserPosts] = useState<IPost[] | []>([]);
+  const [searchedPosts, setSearchedPosts] = useState<IPost[] | []>([]);
+  const [searchText, setSearchText] = useState<string>("");
 
   const { user } = useAuth();
   const { data } = usePosts();
@@ -27,6 +29,10 @@ const UserProfile = () => {
     deletePost.mutate(postId, {
       onSuccess() {
         setUserPosts(userPosts.filter((post) => post.id !== postId));
+        if (searchedPosts) {
+          // also remove post from searched filter result
+          setSearchedPosts(searchedPosts.filter((post) => post.id !== postId));
+        }
       },
       onError(err) {
         console.log("err = ", err);
@@ -36,6 +42,26 @@ const UserProfile = () => {
 
   const handleEdit = (postId: string) => {
     router.push(`/post/update?id=${postId}`);
+  };
+
+  const handleSearch = (searchText: string) => {
+    setSearchText(searchText);
+    if (searchText) {
+      setSearchedPosts(
+        userPosts.filter(
+          (post) =>
+            post.username.toLowerCase().includes(searchText.toLowerCase()) ||
+            post.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            post.description.toLowerCase().includes(searchText.toLowerCase()) ||
+            post.city.toLowerCase().includes(searchText.toLowerCase()) ||
+            post.country.toLowerCase().includes(searchText.toLowerCase())
+        )
+      );
+    }
+  };
+
+  const handleReset = () => {
+    setSearchText("");
   };
 
   return (
@@ -58,11 +84,21 @@ const UserProfile = () => {
         Relive Your{" "}
         <span className="gradient">Unforgettable Travel Memories</span>
       </Typography>
-      <PostList
-        posts={userPosts}
-        handleDelete={handleDelete}
-        handleEdit={handleEdit}
-      />
+      <SearchInput onSearch={handleSearch} onReset={handleReset} />
+      {searchText ? (
+        <ShowSearchedPost
+          searchText={searchText}
+          searchedPosts={searchedPosts}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+        />
+      ) : (
+        <PostList
+          posts={userPosts}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+        />
+      )}
     </Box>
   );
 };
