@@ -15,7 +15,7 @@ const ShowSearchedPost = ({ searchText, searchedPosts }: Props) => {
           variant="h6"
           color="gray"
           sx={{
-            fontSize: { xs: "13px", sm: "20px" },
+            fontSize: { xs: "18px", sm: "20px" },
             mt: "30vh",
           }}
         >

@@ -59,7 +59,7 @@ const Dashboard = () => {
           variant="h1"
           fontWeight="bold"
           sx={{
-            fontSize: { xs: "20px", sm: "40px" },
+            fontSize: { xs: "25px", sm: "40px" },
           }}
         >
           <span className="gradient">Discover & Share </span> - Travel Memories
