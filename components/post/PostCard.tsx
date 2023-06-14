@@ -39,7 +39,6 @@ const PostCard = ({ post, handleDelete, handleEdit }: Props) => {
   const handleConfirmation = (confirmed: boolean) => {
     setOpen(false);
     if (confirmed && handleDelete) {
-      console.log("deleting post");
       handleDelete(post.id);
     }
   };

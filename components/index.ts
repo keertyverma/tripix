@@ -10,6 +10,8 @@ import CreatePostForm from "./post/CreatePostForm";
 import PostList from "./post/PostList";
 import UpdatePostForm from "./post/UpdatePostForm";
 import DisplayPost from "./post/DisplayPost";
+import SearchInput from "./ui/SearchInput";
+import ShowSearchedPost from "./post/ShowSearchedPost";
 
 export {
   Navbar,
@@ -24,4 +26,6 @@ export {
   PostList,
   UpdatePostForm,
   DisplayPost,
+  SearchInput,
+  ShowSearchedPost,
 };

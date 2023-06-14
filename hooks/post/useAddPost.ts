@@ -16,7 +16,6 @@ const useAddPost = () =>
   useMutation({
     mutationFn: (newPost: IAddPost) =>
       databaseService.createPost(newPost).then((res) => {
-        console.log("response from mutationfn, = ", res);
         return res;
       }),
   });

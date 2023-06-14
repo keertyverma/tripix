@@ -10,8 +10,6 @@ interface Props {
 }
 
 const DisplayPost = ({ post }: Props) => {
-  console.log("post = ", post);
-
   return (
     <Grid
       container

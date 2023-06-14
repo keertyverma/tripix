@@ -93,3 +93,14 @@ a {
 .image-fit {
   object-fit: cover;
 }
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.text-bold {
+  font-weight: bold;
+}
