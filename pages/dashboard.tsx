@@ -1,3 +1,4 @@
+import { LoadingPostSkeleton } from "@/components";
 import { Box, Typography } from "@mui/material";
 
 import {
@@ -15,7 +16,7 @@ const Dashboard = () => {
   const [searchedPosts, setSearchedPosts] = useState<IPost[] | []>([]);
   const [searchText, setSearchText] = useState<string>("");
 
-  const { data, isFetching, error } = usePosts();
+  const { data, isFetching, isLoading } = usePosts();
 
   useEffect(() => {
     if (data) {
@@ -65,7 +66,9 @@ const Dashboard = () => {
           <span className="gradient">Discover & Share </span> - Travel Memories
         </Typography>
         <SearchInput onSearch={handleSearch} onReset={handleReset} />
-        {searchText ? (
+        {isFetching || isLoading ? (
+          <LoadingPostSkeleton />
+        ) : searchText ? (
           <ShowSearchedPost
             searchText={searchText}
             searchedPosts={searchedPosts}

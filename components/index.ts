@@ -12,6 +12,7 @@ import UpdatePostForm from "./post/UpdatePostForm";
 import DisplayPost from "./post/DisplayPost";
 import SearchInput from "./ui/SearchInput";
 import ShowSearchedPost from "./post/ShowSearchedPost";
+import LoadingPostSkeleton from "./post/LoadingPostSkeleton";
 
 export {
   Navbar,
@@ -28,4 +29,5 @@ export {
   DisplayPost,
   SearchInput,
   ShowSearchedPost,
+  LoadingPostSkeleton,
 };

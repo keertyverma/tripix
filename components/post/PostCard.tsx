@@ -48,6 +48,10 @@ const PostCard = ({ post, handleDelete, handleEdit }: Props) => {
       sx={{
         border: "1px solid rgba(31, 110, 140, 0.2)",
         boxShadow: "-10px 15px 8px rgba(31, 110, 140, 0.2)",
+        ":hover": {
+          transform: "scale(1.05)",
+          transition: "transform .15s ease-in",
+        },
       }}
     >
       <Link href={`/post/details/?id=${post.id}`}>

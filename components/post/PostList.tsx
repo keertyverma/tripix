@@ -18,6 +18,7 @@ const PostList = ({ posts, handleDelete, handleEdit }: Props) => {
       }}
       mt={4}
       px={10}
+      width={"85%"}
     >
       <Grid
         container

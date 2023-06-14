@@ -7,6 +7,7 @@ import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { LoadingPostSkeleton } from "@/components";
 
 const UserProfile = () => {
   const [userPosts, setUserPosts] = useState<IPost[] | []>([]);
@@ -14,7 +15,7 @@ const UserProfile = () => {
   const [searchText, setSearchText] = useState<string>("");
 
   const { user } = useAuth();
-  const { data } = usePosts();
+  const { data, isFetching, isLoading } = usePosts();
   const deletePost = useDeletePost();
   const router = useRouter();
 
@@ -117,8 +118,9 @@ const UserProfile = () => {
           </Box>
         </Box>
       )}
-
-      {searchText ? (
+      {isFetching || isLoading ? (
+        <LoadingPostSkeleton />
+      ) : searchText ? (
         <ShowSearchedPost
           searchText={searchText}
           searchedPosts={searchedPosts}
