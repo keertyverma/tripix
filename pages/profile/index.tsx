@@ -71,16 +71,10 @@ const UserProfile = () => {
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
-      sx={{ mt: { xs: "30px", sm: "40px" } }}
+      p="2rem"
       position="relative"
     >
-      <Typography
-        variant="h3"
-        component="h1"
-        fontWeight="bold"
-        sx={{ fontSize: { xs: "20px", sm: "35px" } }}
-        textAlign="center"
-      >
+      <Typography variant="h4" fontWeight="bold" textAlign="center">
         Relive Your{" "}
         <span className="gradient">Unforgettable Travel Memories</span>
       </Typography>
@@ -92,9 +86,9 @@ const UserProfile = () => {
           {userPosts.length === 0 && (
             <Box
               mt="30vh"
-              sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
+              sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             >
-              <Typography fontSize={{ xs: "15px", sm: "20px" }}>
+              <Typography variant="h6">
                 No memories created. Go ahead and start creating! 😎
               </Typography>
               <Box
@@ -111,7 +105,7 @@ const UserProfile = () => {
                     sx={{
                       borderRadius: "10px",
                       textTransform: "capitalize",
-                      fontSize: { xs: "14px", sm: "16px" },
+                      fontSize: "1rem",
                     }}
                   >
                     Create

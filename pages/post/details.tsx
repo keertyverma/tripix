@@ -16,20 +16,14 @@ const PostDetails = () => {
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
-      sx={{ mt: { xs: "30px", sm: "40px" } }}
+      p="2rem"
       gap={1}
       position="relative"
     >
-      <Typography
-        variant="h3"
-        component="h1"
-        fontWeight="bold"
-        sx={{ fontSize: { xs: "20px", sm: "35px" } }}
-        textAlign="center"
-      >
+      <Typography variant="h4" fontWeight="bold" textAlign="center">
         Relish the <span className="gradient">Nostalgia</span>
       </Typography>
-      <Typography variant="h6" sx={{ fontSize: { xs: "18px", sm: "20px" } }}>
+      <Typography variant="subtitle1">
         Journey Back in Time, Embrace the Magic of Travel
       </Typography>
 

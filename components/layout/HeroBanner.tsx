@@ -11,18 +11,17 @@ const HeroBanner = () => {
       sx={{
         display: "flex",
         flexDirection: { xs: "column", sm: "row" },
-        ml: { sm: "30px", xs: "5px" },
-        mt: { sm: "30px", xs: "5px" },
+        m: { sm: "1.2rem 0 0 1.2rem", xs: "0.5rem 0 0 0.5rem" },
       }}
       position="relative"
-      p="10px"
+      p="1.5rem"
     >
-      <Box sx={{ p: { xs: "10px", sm: "24px" } }}>
+      <Box>
         <Typography
           variant="h1"
           fontWeight="600"
           sx={{
-            fontSize: { xs: "50px", sm: "70px" },
+            fontSize: { xs: "3rem", sm: "4rem" },
             textAlign: { xs: "center", sm: "left" },
           }}
         >
@@ -30,12 +29,11 @@ const HeroBanner = () => {
           <p className="gradient">Connect</p>
           <p>Explore</p>
         </Typography>
-
-        <Box sx={{ mt: { xs: "10px", sm: "20px" } }}>
+        <Box sx={{ mt: { xs: "1rem", sm: "1.5rem" } }}>
           <Typography
             variant="h5"
             sx={{
-              fontSize: { xs: "20px", sm: "25px" },
+              fontSize: { xs: "1.2rem", sm: "1.5rem" },
               textAlign: { xs: "center", sm: "left" },
               lineHeight: "1.5",
             }}
@@ -44,7 +42,6 @@ const HeroBanner = () => {
             <p>Spread the joy</p>
           </Typography>
         </Box>
-
         <Box
           display="flex"
           sx={{
@@ -57,17 +54,8 @@ const HeroBanner = () => {
               color="primary"
               size="large"
               sx={{
-                mt: {
-                  xs: "10px",
-                  md: "20px",
-                },
-                mb: {
-                  xs: "20px",
-                },
-                fontSize: {
-                  xs: "15px",
-                  sm: "18px",
-                },
+                m: { xs: "0.6rem 0 1.25rem 0", md: "1.25rem 0" },
+                fontSize: "1rem",
                 textTransform: "capitalize",
               }}
             >

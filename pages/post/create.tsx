@@ -8,18 +8,11 @@ const Create = () => {
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
-      sx={{ mt: { xs: "30px", sm: "40px" } }}
+      p="2rem"
       gap={1}
       position="relative"
     >
-      <Typography
-        variant="h1"
-        fontWeight="bold"
-        sx={{
-          fontSize: { xs: "25px", sm: "40px" },
-        }}
-        textAlign="center"
-      >
+      <Typography variant="h4" fontWeight="bold" textAlign="center">
         <span className="gradient">Create Memory</span>
       </Typography>
       <CreatePostForm />

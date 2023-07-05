@@ -51,18 +51,9 @@ const Dashboard = () => {
         alignItems="center"
         justifyContent="center"
         flexDirection="column"
-        sx={{
-          mt: { xs: "30px", sm: "40px" },
-          mb: { xs: "20px", sm: "40px" },
-        }}
+        p="2rem"
       >
-        <Typography
-          variant="h1"
-          fontWeight="bold"
-          sx={{
-            fontSize: { xs: "25px", sm: "40px" },
-          }}
-        >
+        <Typography variant="h4" fontWeight="bold">
           <span className="gradient">Discover & Share </span> - Travel Memories
         </Typography>
         <SearchInput onSearch={handleSearch} onReset={handleReset} />
