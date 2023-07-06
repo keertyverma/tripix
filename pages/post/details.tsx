@@ -23,9 +23,6 @@ const PostDetails = () => {
       <Typography variant="h4" fontWeight="bold" textAlign="center">
         Relish the <span className="gradient">Nostalgia</span>
       </Typography>
-      <Typography variant="subtitle1">
-        Journey Back in Time, Embrace the Magic of Travel
-      </Typography>
 
       {post && <DisplayPost post={post} />}
     </Box>

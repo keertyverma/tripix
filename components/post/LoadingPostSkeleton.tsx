@@ -19,7 +19,6 @@ const LoadingPostSkeleton = () => {
         width: { sm: "87%" },
       }}
       mt={4}
-      px={10}
     >
       <Grid
         container
