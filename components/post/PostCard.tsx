@@ -97,12 +97,13 @@ const PostCard = ({ post, handleDelete, handleEdit }: Props) => {
               <MdOutlineDateRange color="gray" size={15} />{" "}
               {getLongDate(post.date)}
             </Typography>
-
-            {(post.city || post.country) && (
+            {post.city || post.country ? (
               <Typography variant="subtitle2">
                 <MdLocationOn color="#811a18" size={15} />{" "}
                 {getLocation(post.city, post.country)}
               </Typography>
+            ) : (
+              <Typography>&nbsp;</Typography>
             )}
           </Stack>
         </Stack>

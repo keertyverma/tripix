@@ -53,7 +53,7 @@ const Dashboard = () => {
         flexDirection="column"
         p="2rem"
       >
-        <Typography variant="h4" fontWeight="bold">
+        <Typography variant="h4" fontWeight="bold" textAlign="center">
           <span className="gradient">Discover & Share </span> - Travel Memories
         </Typography>
         <SearchInput onSearch={handleSearch} onReset={handleReset} />
