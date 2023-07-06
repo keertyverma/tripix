@@ -28,13 +28,11 @@ const Navbar = () => {
   };
 
   return (
-    <Box boxShadow="0px 6px 4px rgba(0, 0, 0, 0.1)">
+    <Box boxShadow="0px 2px 20px rgba(0, 0, 0, 0.1)" p="0.5rem 2rem">
       <nav>
         <Stack
           direction="row"
-          px="10px"
-          py="10px"
-          sx={{ gap: { sm: "122px", xs: "40px" } }}
+          sx={{ gap: { sm: "7.6rem", xs: "2.5rem" } }}
           justifyContent="space-between"
           alignItems="center"
         >
@@ -44,9 +42,9 @@ const Navbar = () => {
           >
             <Stack
               direction="row"
-              gap="5px"
+              gap="0.3rem"
               alignItems="center"
-              sx={{ ml: { sm: "10px" } }}
+              sx={{ ml: { sm: "1rem" } }}
             >
               <Image
                 src="/images/logo.png"
@@ -58,7 +56,7 @@ const Navbar = () => {
                 variant="h4"
                 fontWeight="bold"
                 color="#3F7A9C"
-                sx={{ fontSize: { xs: "30px", sm: "35px" } }}
+                sx={{ fontSize: { xs: "1.9rem", sm: "2.2rem" } }}
               >
                 tripix
               </Typography>
@@ -70,10 +68,9 @@ const Navbar = () => {
             {user ? (
               <Stack
                 direction="row"
-                fontSize="24px"
                 alignItems="flex-end"
                 justifyContent="space-between"
-                sx={{ gap: { sm: "50px" } }}
+                sx={{ gap: { sm: "3rem" } }}
               >
                 <Box
                   sx={{
@@ -84,12 +81,12 @@ const Navbar = () => {
                   <Link href="/post/create">
                     <Button
                       variant="contained"
-                      size="medium"
+                      size="small"
                       color="primary"
                       sx={{
                         borderRadius: "10px",
                         textTransform: "capitalize",
-                        fontSize: "18px",
+                        fontSize: "1.1rem",
                       }}
                     >
                       Create
@@ -101,13 +98,13 @@ const Navbar = () => {
             ) : (
               <Stack
                 direction="row"
-                fontSize="24px"
+                fontSize="1.5rem"
                 alignItems="flex-end"
-                sx={{ gap: { lg: "20px", xs: "15px" } }}
+                justifyContent="center"
+                gap={1}
               >
                 <Link href="/auth/login">
                   <Button
-                    variant="outlined"
                     size="medium"
                     color="secondary"
                     sx={{
@@ -148,7 +145,7 @@ const Navbar = () => {
                   aria-expanded={open ? "true" : undefined}
                   onClick={handleClick}
                 >
-                  <FcMenu style={{ fontSize: "25px" }} />
+                  <FcMenu style={{ fontSize: "1.5rem" }} />
                 </Button>
                 <Menu
                   id="basic-menu"

@@ -1,3 +1,5 @@
+import { useAuth } from "@/providers/auth";
+import { getUserInitials } from "@/utils/helper";
 import {
   Avatar,
   Box,
@@ -7,15 +9,16 @@ import {
   Menu,
   MenuItem,
   Typography,
+  useTheme,
 } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
+import { MdCreate, MdLogout } from "react-icons/md";
+import { RiAccountPinBoxLine } from "react-icons/ri";
 import Logout from "../auth/Logout";
-import { useAuth } from "@/providers/auth";
-import { getUserInitials } from "@/utils/helper";
 
 const UserMenu = () => {
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -43,13 +46,13 @@ const UserMenu = () => {
             alignItems: "center",
             justifyContent: "center",
             boxShadow: "0px 6px 4px rgba(0, 0, 0, 0.1)",
-            padding: "5px",
+            padding: "0.2rem",
             borderRadius: "50%",
-            mb: "3px",
+            mb: "0.1rem",
           }}
         >
-          <Avatar sx={{ width: 40, height: 40, bgcolor: "#57CC99" }}>
-            {getUserInitials(user?.name)}
+          <Avatar sx={{ width: 35, height: 35, bgcolor: "#57CC99" }}>
+            <Typography> {getUserInitials(user?.name)}</Typography>
           </Avatar>
         </Box>
       </Button>
@@ -61,28 +64,38 @@ const UserMenu = () => {
         MenuListProps={{
           "aria-labelledby": "basic-button",
         }}
+        sx={{
+          "& .MuiPaper-root": {
+            borderRadius: 1,
+            marginTop: 1,
+            minWidth: { xs: "80%", sm: "10rem" },
+          },
+          "& .MuiMenuItem-root": {
+            display: "flex",
+            gap: "0.4rem",
+            justifyContent: "center",
+          },
+        }}
+        elevation={2}
       >
-        <MenuItem
-          onClick={handleClose}
-          sx={{ padding: { xs: "0 10px", sm: "0 30px" } }}
-        >
+        <MenuItem onClick={handleClose}>
+          <RiAccountPinBoxLine color={theme.palette.secondary.main} />
           <Link href="/profile" className="menu-link">
-            <Typography>My Profile</Typography>
+            <Typography>Profile</Typography>
           </Link>
         </MenuItem>
         <Divider />
         <Hidden smUp>
-          <MenuItem onClick={handleClose} sx={{ padding: { xs: "0 10px" } }}>
+          <MenuItem onClick={handleClose}>
+            <MdCreate color={theme.palette.secondary.main} />
             <Link href="/post/create" className="menu-link">
               <Typography>Create</Typography>
             </Link>
           </MenuItem>
           <Divider />
         </Hidden>
-        <MenuItem
-          onClick={handleClose}
-          sx={{ padding: { xs: "0 10px", sm: "0 30px" } }}
-        >
+        <MenuItem onClick={handleClose}>
+          <MdLogout color={theme.palette.secondary.main} />
           <Logout />
         </MenuItem>
       </Menu>

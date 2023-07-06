@@ -46,9 +46,15 @@ const SearchInput = ({ onSearch, onReset }: Props) => {
                 <IconButton edge="end" aria-label="search" type="submit">
                   <BsSearch color="#38a3a5" />
                 </IconButton>
-                <IconButton edge="end" aria-label="reset" onClick={handleClear}>
-                  <BsXCircle />
-                </IconButton>
+                {searchRef?.current?.value && (
+                  <IconButton
+                    edge="end"
+                    aria-label="reset"
+                    onClick={handleClear}
+                  >
+                    <BsXCircle />
+                  </IconButton>
+                )}
               </Stack>
             </InputAdornment>
           ),

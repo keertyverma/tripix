@@ -1,8 +1,7 @@
+import { useAuth } from "@/providers/auth";
 import { authService } from "@/services";
 import { Button, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-
-import { useAuth } from "@/providers/auth";
 
 const Logout = () => {
   const router = useRouter();
@@ -14,6 +13,8 @@ const Logout = () => {
       color="secondary"
       sx={{
         textTransform: "capitalize",
+        padding: "0.3rem",
+        minWidth: "0",
       }}
       onClick={() => {
         authService.logout().then((res) => {
