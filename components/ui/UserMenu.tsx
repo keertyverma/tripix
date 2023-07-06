@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 import { MouseEvent, useState } from "react";
-import { MdCreate, MdLogout } from "react-icons/md";
+import { MdOutlineCreate, MdLogout } from "react-icons/md";
 import { RiAccountPinBoxLine } from "react-icons/ri";
 import Logout from "../auth/Logout";
 
@@ -87,7 +87,7 @@ const UserMenu = () => {
         <Divider />
         <Hidden smUp>
           <MenuItem onClick={handleClose}>
-            <MdCreate color={theme.palette.secondary.main} />
+            <MdOutlineCreate color={theme.palette.secondary.main} />
             <Link href="/post/create" className="menu-link">
               <Typography>Create</Typography>
             </Link>
