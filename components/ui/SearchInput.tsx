@@ -30,7 +30,7 @@ const SearchInput = ({ onSearch, onReset }: Props) => {
         color="secondary"
         placeholder="Search memories..."
         sx={{
-          width: { xs: "80%", sm: "50%" },
+          width: { xs: "90%", sm: "50%" },
           marginTop: { xs: "10px", sm: "20px" },
           "& .MuiInputBase-root": {
             borderRadius: "20px",
