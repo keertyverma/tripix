@@ -139,7 +139,7 @@ const UserMenu = () => {
           <Divider />
         </Hidden>
         <MenuItem>
-          <FlexBetween gap={1}>
+          <FlexBetween gap={1.4}>
             <RiMoonLine color={theme.palette.secondary.main} />
             <FlexBetween gap={1}>
               <Typography color="secondary">Dark Mode</Typography>

@@ -13,6 +13,7 @@ import DisplayPost from "./post/DisplayPost";
 import SearchInput from "./ui/SearchInput";
 import ShowSearchedPost from "./post/ShowSearchedPost";
 import LoadingPostSkeleton from "./post/LoadingPostSkeleton";
+import UserInfo from "./user/UserInfo";
 
 export {
   Navbar,
@@ -30,4 +31,5 @@ export {
   SearchInput,
   ShowSearchedPost,
   LoadingPostSkeleton,
+  UserInfo,
 };

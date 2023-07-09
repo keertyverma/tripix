@@ -4,11 +4,12 @@ import constants from "@/constants";
 import { IAddPost } from "../hooks/post/useAddPost";
 
 const database = new Databases(appwriteClient);
-const { databaseId, collectionId } = constants.appwrite;
+const { databaseId, postCollectionId, profileCollectionId } =
+  constants.appwrite;
 
 const databaseService = {
   getPosts: () =>
-    database.listDocuments(databaseId as string, collectionId as string, [
+    database.listDocuments(databaseId as string, postCollectionId as string, [
       Query.orderDesc("$createdAt"),
     ]),
 
@@ -16,7 +17,7 @@ const databaseService = {
     const role = Role.user(newPost.userId);
     return database.createDocument(
       databaseId as string,
-      collectionId as string,
+      postCollectionId as string,
       ID.unique(),
       newPost,
       [
@@ -31,19 +32,30 @@ const databaseService = {
   deletePostById: (postId: string) =>
     database.deleteDocument(
       databaseId as string,
-      collectionId as string,
+      postCollectionId as string,
       postId
     ),
 
   getPostById: (postId: string) =>
-    database.getDocument(databaseId as string, collectionId as string, postId),
+    database.getDocument(
+      databaseId as string,
+      postCollectionId as string,
+      postId
+    ),
 
   updatePost: (postId: string, data: any) =>
     database.updateDocument(
       databaseId as string,
-      collectionId as string,
+      postCollectionId as string,
       postId,
       data
+    ),
+
+  getUserProfile: (userId: string) =>
+    database.listDocuments(
+      databaseId as string,
+      profileCollectionId as string,
+      [Query.equal("userId", userId)]
     ),
 };
 

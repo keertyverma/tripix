@@ -1,13 +1,18 @@
-import { PostList, SearchInput, ShowSearchedPost } from "@/components";
+import {
+  LoadingPostSkeleton,
+  PostList,
+  SearchInput,
+  ShowSearchedPost,
+  UserInfo,
+} from "@/components";
 import { IPost } from "@/entities";
 import useDeletePost from "@/hooks/post/useDeletePost";
 import usePosts from "@/hooks/post/usePosts";
 import { useAuth } from "@/providers/auth";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { LoadingPostSkeleton } from "@/components";
 
 const UserProfile = () => {
   const [userPosts, setUserPosts] = useState<IPost[] | []>([]);
@@ -66,70 +71,82 @@ const UserProfile = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
-      p="2rem"
-      position="relative"
-    >
-      <Typography variant="h4" fontWeight="bold" textAlign="center">
-        Relive Your{" "}
-        <span className="gradient">Unforgettable Travel Memories</span>
-      </Typography>
-      <SearchInput onSearch={handleSearch} onReset={handleReset} />
-      {isFetching || isLoading ? (
-        <LoadingPostSkeleton />
-      ) : (
+    <Box>
+      {user && (
         <>
-          {userPosts.length === 0 && (
-            <Box
-              mt="30vh"
-              sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-            >
-              <Typography variant="h6">
-                No memories created. Go ahead and start creating! 😎
-              </Typography>
-              <Box
-                sx={{
-                  alignSelf: "center",
-                  justifySelf: "center",
-                }}
-              >
-                <Link href="/post/create">
-                  <Button
-                    variant="contained"
-                    size="small"
-                    color="primary"
-                    sx={{
-                      borderRadius: "10px",
-                      textTransform: "capitalize",
-                      fontSize: "1rem",
-                    }}
-                  >
-                    Create
-                  </Button>
-                </Link>
-              </Box>
-            </Box>
-          )}
-          {searchText ? (
-            <ShowSearchedPost
-              searchText={searchText}
-              searchedPosts={searchedPosts}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
-            />
-          ) : (
-            <PostList
-              posts={userPosts}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
-            />
-          )}
+          <UserInfo
+            userId={user.id}
+            email={user.email}
+            numberOfPosts={userPosts?.length}
+          />
+          <Divider />
         </>
       )}
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+        p="1.5rem 2rem"
+        position="relative"
+      >
+        <Typography variant="h5" fontWeight="bold" textAlign="center">
+          Relive Your{" "}
+          <span className="gradient">Unforgettable Travel Memories</span>
+        </Typography>
+        <SearchInput onSearch={handleSearch} onReset={handleReset} />
+        {isFetching || isLoading ? (
+          <LoadingPostSkeleton />
+        ) : (
+          <>
+            {userPosts.length === 0 && (
+              <Box
+                mt="30vh"
+                sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+              >
+                <Typography variant="h6">
+                  No memories created. Go ahead and start creating! 😎
+                </Typography>
+                <Box
+                  sx={{
+                    alignSelf: "center",
+                    justifySelf: "center",
+                  }}
+                >
+                  <Link href="/post/create">
+                    <Button
+                      variant="contained"
+                      size="small"
+                      color="primary"
+                      sx={{
+                        borderRadius: "10px",
+                        textTransform: "capitalize",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      Create
+                    </Button>
+                  </Link>
+                </Box>
+              </Box>
+            )}
+            {searchText ? (
+              <ShowSearchedPost
+                searchText={searchText}
+                searchedPosts={searchedPosts}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+              />
+            ) : (
+              <PostList
+                posts={userPosts}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+              />
+            )}
+          </>
+        )}
+      </Box>
     </Box>
   );
 };
