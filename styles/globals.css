@@ -104,3 +104,7 @@ a {
 .text-bold {
   font-weight: bold;
 }
+
+.rounded-img {
+  border-radius: 50%;
+}

@@ -31,20 +31,20 @@ const SearchInput = ({ onSearch, onReset }: Props) => {
         placeholder="Search memories..."
         sx={{
           width: { xs: "100%", sm: "50%" },
-          marginTop: { xs: "10px", sm: "20px" },
+          marginTop: { xs: "0.5rem", sm: "1rem" },
           "& .MuiInputBase-root": {
             borderRadius: "20px",
           },
           "& .MuiInputBase-input": {
-            padding: "12px 14px",
+            padding: "8px 14px",
           },
         }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <Stack direction="row" gap={2}>
+              <Stack direction="row" gap={1}>
                 <IconButton edge="end" aria-label="search" type="submit">
-                  <BsSearch color="#38a3a5" />
+                  <BsSearch color="#38a3a5" size="18px" />
                 </IconButton>
                 {searchRef?.current?.value && (
                   <IconButton
@@ -52,7 +52,7 @@ const SearchInput = ({ onSearch, onReset }: Props) => {
                     aria-label="reset"
                     onClick={handleClear}
                   >
-                    <BsXCircle />
+                    <BsXCircle size="18px" />
                   </IconButton>
                 )}
               </Stack>

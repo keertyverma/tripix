@@ -14,6 +14,8 @@ import SearchInput from "./ui/SearchInput";
 import ShowSearchedPost from "./post/ShowSearchedPost";
 import LoadingPostSkeleton from "./post/LoadingPostSkeleton";
 import UserInfo from "./user/UserInfo";
+import Portal from "./ui/Portal";
+import EditProfileForm from "./user/EditProfileForm";
 
 export {
   Navbar,
@@ -32,4 +34,6 @@ export {
   ShowSearchedPost,
   LoadingPostSkeleton,
   UserInfo,
+  Portal,
+  EditProfileForm,
 };

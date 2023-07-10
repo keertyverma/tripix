@@ -31,4 +31,12 @@ const getUserInitials = (name?: string): string => {
   return initials;
 };
 
-export { getLongDate, getLocation, getUserInitials };
+const getTrimImageName = (image: File, trimLength: number): string => {
+  return image
+    ? image.name.length < trimLength
+      ? image.name
+      : image.name.slice(0, trimLength) + "..."
+    : "";
+};
+
+export { getLongDate, getLocation, getUserInitials, getTrimImageName };

@@ -80,7 +80,7 @@ const UserMenu = () => {
             justifyContent: "stretch",
             ml: "0.5rem",
           },
-          "& .MuiMenuItem-root:first-child": {
+          "& .MuiMenuItem-root:first-of-type": {
             justifyContent: "center",
           },
         }}
