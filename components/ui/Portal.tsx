@@ -36,7 +36,7 @@ const Portal = ({ onClose, children }: Props) => {
           <Box
             sx={{
               width: { xs: "90%", sm: "30%" },
-              height: { xs: "90%", sm: "90%" },
+              height: { xs: "80%", sm: "90%" },
             }}
             bgcolor="#fff"
             padding={1}

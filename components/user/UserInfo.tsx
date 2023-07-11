@@ -1,6 +1,14 @@
 import useProfile from "@/hooks/user-profile/useProfile";
 import { getUserInitials } from "@/utils/helper";
-import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import Image from "next/image";
 import { useState } from "react";
 import Portal from "../ui/Portal";
 import EditProfileForm from "./EditProfileForm";
@@ -15,6 +23,7 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
   const [isEditProfile, setIsEditProfile] = useState(false);
 
   const { data: profile, isLoading } = useProfile(userId);
+  const isNonMobileScreen = useMediaQuery("(min-width:600px)");
 
   if (isLoading || !profile) return null;
 
@@ -28,6 +37,10 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
         m="1rem auto"
       >
         <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
           sx={{
             boxShadow: "0px 6px 4px rgba(0, 0, 0, 0.1)",
             padding: "0.2rem",
@@ -35,18 +48,28 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
             mb: "0.1rem",
           }}
         >
-          <Avatar
-            sx={{
-              width: { xs: 80, sm: 120 },
-              height: { xs: 80, sm: 120 },
-              bgcolor: "#57CC99",
-            }}
-          >
-            <Typography variant="h4">
-              {" "}
-              {getUserInitials(profile?.name)}
-            </Typography>
-          </Avatar>
+          {profile.profilePicture ? (
+            <Image
+              width={isNonMobileScreen ? 120 : 80}
+              height={isNonMobileScreen ? 120 : 80}
+              src={profile.profilePicture}
+              alt="profile picture"
+              className="image-fit rounded-img"
+            />
+          ) : (
+            <Avatar
+              sx={{
+                width: { xs: 80, sm: 120 },
+                height: { xs: 80, sm: 120 },
+                bgcolor: "#57CC99",
+              }}
+            >
+              <Typography variant="h4">
+                {" "}
+                {getUserInitials(profile?.name)}
+              </Typography>
+            </Avatar>
+          )}
         </Box>
         <Stack justifyContent="center" textAlign="left">
           <Typography variant="subtitle1">{profile.name}</Typography>
@@ -83,14 +106,9 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
           </Stack>
         </Stack>
       </Stack>
-      {isEditProfile && (
+      {profile && isEditProfile && (
         <Portal onClose={() => setIsEditProfile(false)}>
-          <EditProfileForm
-            userId={userId}
-            name={profile.name}
-            bio={profile.bio}
-            profilePic={profile.profilePicture}
-          />
+          <EditProfileForm profile={profile} />
         </Portal>
       )}
     </>

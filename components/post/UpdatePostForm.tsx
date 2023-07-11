@@ -64,7 +64,7 @@ const UpdatePostForm = ({ post }: Props) => {
 
   const handleFormSubmit = handleSubmit(async (data) => {
     // get form data
-    const upldatedPost: IUpdatePost = {
+    const updatedPost: IUpdatePost = {
       id: post.id,
       data: {
         title: data.title,
@@ -76,7 +76,7 @@ const UpdatePostForm = ({ post }: Props) => {
     };
 
     // update post
-    updatePost.mutate(upldatedPost, {
+    updatePost.mutate(updatedPost, {
       onSuccess() {
         router.push("/profile");
       },

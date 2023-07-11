@@ -57,6 +57,14 @@ const databaseService = {
       profileCollectionId as string,
       [Query.equal("userId", userId)]
     ),
+
+  updateProfile: (profileId: string, data: any) =>
+    database.updateDocument(
+      databaseId as string,
+      profileCollectionId as string,
+      profileId,
+      data
+    ),
 };
 
 export { databaseService };

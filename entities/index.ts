@@ -25,3 +25,12 @@ export interface IUpdatePost {
     country: string;
   };
 }
+
+export interface IUpdateProfile {
+  id: string;
+  data: {
+    bio?: string;
+    profilePicture?: string | null;
+    photoId?: string;
+  };
+}

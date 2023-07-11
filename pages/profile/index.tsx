@@ -72,16 +72,6 @@ const UserProfile = () => {
 
   return (
     <Box>
-      {user && (
-        <>
-          <UserInfo
-            userId={user.id}
-            email={user.email}
-            numberOfPosts={userPosts?.length}
-          />
-          <Divider />
-        </>
-      )}
       <Box
         display="flex"
         alignItems="center"
@@ -94,6 +84,16 @@ const UserProfile = () => {
           Relive Your{" "}
           <span className="gradient">Unforgettable Travel Memories</span>
         </Typography>
+        {user && (
+          <>
+            <UserInfo
+              userId={user.id}
+              email={user.email}
+              numberOfPosts={userPosts?.length}
+            />
+            <Divider />
+          </>
+        )}
         <SearchInput onSearch={handleSearch} onReset={handleReset} />
         {isFetching || isLoading ? (
           <LoadingPostSkeleton />
