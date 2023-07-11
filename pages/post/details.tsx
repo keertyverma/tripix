@@ -1,4 +1,4 @@
-import { DisplayPost } from "@/components";
+import { DisplayPost, ProtectedRoute } from "@/components";
 import { IPost } from "@/entities";
 import usePost from "@/hooks/post/usePost";
 import { Box, Typography } from "@mui/material";
@@ -11,21 +11,23 @@ const PostDetails = () => {
   const post = usePost(postId) as IPost;
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      flexDirection="column"
-      p="2rem"
-      gap={1}
-      position="relative"
-    >
-      <Typography variant="h4" fontWeight="bold" textAlign="center">
-        Relish the <span className="gradient">Nostalgia</span>
-      </Typography>
+    <ProtectedRoute>
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+        p="2rem"
+        gap={1}
+        position="relative"
+      >
+        <Typography variant="h4" fontWeight="bold" textAlign="center">
+          Relish the <span className="gradient">Nostalgia</span>
+        </Typography>
 
-      {post && <DisplayPost post={post} />}
-    </Box>
+        {post && <DisplayPost post={post} />}
+      </Box>
+    </ProtectedRoute>
   );
 };
 

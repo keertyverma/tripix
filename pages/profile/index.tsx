@@ -1,6 +1,7 @@
 import {
   LoadingPostSkeleton,
   PostList,
+  ProtectedRoute,
   SearchInput,
   ShowSearchedPost,
   UserInfo,
@@ -71,83 +72,85 @@ const UserProfile = () => {
   };
 
   return (
-    <Box>
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        flexDirection="column"
-        p="1.5rem 2rem"
-        position="relative"
-      >
-        <Typography variant="h5" fontWeight="bold" textAlign="center">
-          Relive Your{" "}
-          <span className="gradient">Unforgettable Travel Memories</span>
-        </Typography>
-        {user && (
-          <>
-            <UserInfo
-              userId={user.id}
-              email={user.email}
-              numberOfPosts={userPosts?.length}
-            />
-            <Divider />
-          </>
-        )}
-        <SearchInput onSearch={handleSearch} onReset={handleReset} />
-        {isFetching || isLoading ? (
-          <LoadingPostSkeleton />
-        ) : (
-          <>
-            {userPosts.length === 0 && (
-              <Box
-                mt="30vh"
-                sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-              >
-                <Typography variant="h6">
-                  No memories created. Go ahead and start creating! 😎
-                </Typography>
+    <ProtectedRoute>
+      <Box>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+          p="1.5rem 2rem"
+          position="relative"
+        >
+          <Typography variant="h5" fontWeight="bold" textAlign="center">
+            Relive Your{" "}
+            <span className="gradient">Unforgettable Travel Memories</span>
+          </Typography>
+          {user && (
+            <>
+              <UserInfo
+                userId={user.id}
+                email={user.email}
+                numberOfPosts={userPosts?.length}
+              />
+              <Divider />
+            </>
+          )}
+          <SearchInput onSearch={handleSearch} onReset={handleReset} />
+          {isFetching || isLoading ? (
+            <LoadingPostSkeleton />
+          ) : (
+            <>
+              {userPosts.length === 0 && (
                 <Box
-                  sx={{
-                    alignSelf: "center",
-                    justifySelf: "center",
-                  }}
+                  mt="30vh"
+                  sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
                 >
-                  <Link href="/post/create">
-                    <Button
-                      variant="contained"
-                      size="small"
-                      color="primary"
-                      sx={{
-                        borderRadius: "10px",
-                        textTransform: "capitalize",
-                        fontSize: "1rem",
-                      }}
-                    >
-                      Create
-                    </Button>
-                  </Link>
+                  <Typography variant="h6">
+                    No memories created. Go ahead and start creating! 😎
+                  </Typography>
+                  <Box
+                    sx={{
+                      alignSelf: "center",
+                      justifySelf: "center",
+                    }}
+                  >
+                    <Link href="/post/create">
+                      <Button
+                        variant="contained"
+                        size="small"
+                        color="primary"
+                        sx={{
+                          borderRadius: "10px",
+                          textTransform: "capitalize",
+                          fontSize: "1rem",
+                        }}
+                      >
+                        Create
+                      </Button>
+                    </Link>
+                  </Box>
                 </Box>
-              </Box>
-            )}
-            {searchText ? (
-              <ShowSearchedPost
-                searchText={searchText}
-                searchedPosts={searchedPosts}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-              />
-            ) : (
-              <PostList
-                posts={userPosts}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-              />
-            )}
-          </>
-        )}
+              )}
+              {searchText ? (
+                <ShowSearchedPost
+                  searchText={searchText}
+                  searchedPosts={searchedPosts}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                />
+              ) : (
+                <PostList
+                  posts={userPosts}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                />
+              )}
+            </>
+          )}
+        </Box>
       </Box>
-    </Box>
+    </ProtectedRoute>
   );
 };
 
