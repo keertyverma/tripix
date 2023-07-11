@@ -33,9 +33,10 @@ interface IProfile {
 
 interface Props {
   profile: IProfile;
+  onSuccess: () => void;
 }
 
-const EditProfileForm = ({ profile }: Props) => {
+const EditProfileForm = ({ profile, onSuccess }: Props) => {
   const BIO_MAX_LENGTH = 150;
   const { id, name, bio, profilePicture, photoId } = profile;
 
@@ -49,6 +50,7 @@ const EditProfileForm = ({ profile }: Props) => {
   const updateProfile = useUpdateProfile();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -93,7 +95,9 @@ const EditProfileForm = ({ profile }: Props) => {
       updateProfile.mutate(updatedProfile, {
         onSuccess() {
           // TODO: display notification message
+          setMessage("Profile updated successfully.");
           setLoading(false);
+          onSuccess();
         },
         async onError(err) {
           const appWriteError = err as AppwriteException;
@@ -155,6 +159,11 @@ const EditProfileForm = ({ profile }: Props) => {
       {error && (
         <Typography variant="subtitle1" color="error" textAlign="center">
           {error}
+        </Typography>
+      )}
+      {message && (
+        <Typography variant="subtitle1" color="success" textAlign="center">
+          {message}
         </Typography>
       )}
       <form

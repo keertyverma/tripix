@@ -32,7 +32,7 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
       <Stack
         direction="row"
         justifyContent="center"
-        alignItems="center"
+        alignItems="flex-start"
         gap={2}
         m="1rem auto"
       >
@@ -110,7 +110,10 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
       </Stack>
       {profile && isEditProfile && (
         <Portal onClose={() => setIsEditProfile(false)}>
-          <EditProfileForm profile={profile} />
+          <EditProfileForm
+            profile={profile}
+            onSuccess={() => setIsEditProfile(false)}
+          />
         </Portal>
       )}
     </>
