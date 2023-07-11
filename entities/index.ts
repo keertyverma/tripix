@@ -34,3 +34,8 @@ export interface IUpdateProfile {
     photoId?: string;
   };
 }
+
+export interface IAddProfile {
+  name: string;
+  userId: string;
+}

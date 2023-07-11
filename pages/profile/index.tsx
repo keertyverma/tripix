@@ -103,7 +103,7 @@ const UserProfile = () => {
             <>
               {userPosts.length === 0 && (
                 <Box
-                  mt="30vh"
+                  mt="20vh"
                   sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
                 >
                   <Typography variant="h6">

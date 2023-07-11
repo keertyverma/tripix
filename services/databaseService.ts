@@ -2,6 +2,7 @@ import { Databases, Query, ID, Permission, Role } from "appwrite";
 import appwriteClient from "./appwriteClient";
 import constants from "@/constants";
 import { IAddPost } from "../hooks/post/useAddPost";
+import { IAddProfile } from "@/entities";
 
 const database = new Databases(appwriteClient);
 const { databaseId, postCollectionId, profileCollectionId } =
@@ -65,6 +66,22 @@ const databaseService = {
       profileId,
       data
     ),
+
+  createProfile: (newProfile: IAddProfile) => {
+    const role = Role.user(newProfile.userId);
+    return database.createDocument(
+      databaseId as string,
+      profileCollectionId as string,
+      ID.unique(),
+      newProfile,
+      [
+        Permission.read(role),
+        Permission.delete(role),
+        Permission.update(role),
+        Permission.write(role),
+      ]
+    );
+  },
 };
 
 export { databaseService };

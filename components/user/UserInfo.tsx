@@ -76,7 +76,7 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
           <Typography variant="subtitle2" color="#727475" fontWeight={400}>
             {email}
           </Typography>
-          {numberOfPosts && (
+          {numberOfPosts !== 0 && (
             <Typography variant="subtitle2" fontWeight={400}>
               <span style={{ fontWeight: "700" }}>{numberOfPosts}</span>{" "}
               Memories

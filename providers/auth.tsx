@@ -1,4 +1,6 @@
 import { authService } from "@/services";
+import { databaseService } from "@/services/databaseService";
+import { AppwriteException } from "appwrite";
 import { createContext, useContext, useState, useEffect } from "react";
 
 interface User {
@@ -23,19 +25,37 @@ const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
+  const fetchCurrentUser = async () => {
     setLoading(true);
-    authService
-      .getCurrentUser()
-      .then((res) => {
-        setUser({ id: res.$id, name: res.name, email: res.email });
-      })
-      .catch((err) => {
-        setUser(null);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+
+    try {
+      const res = await authService.getCurrentUser();
+      const userId = res.$id;
+      const name = res.name;
+
+      setUser({ id: userId, name: name, email: res.email });
+
+      // check and create user profile
+      try {
+        await databaseService.createProfile({
+          name,
+          userId,
+        });
+      } catch (err) {
+        const appWriteError = err as AppwriteException;
+        if (appWriteError.type === "document_already_exists") {
+          console.log("profile exists");
+        }
+      }
+    } catch (error) {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCurrentUser();
   }, []);
 
   return (
