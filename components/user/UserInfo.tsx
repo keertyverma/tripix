@@ -50,8 +50,8 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
         >
           {profile.profilePicture ? (
             <Image
-              width={isNonMobileScreen ? 120 : 80}
-              height={isNonMobileScreen ? 120 : 80}
+              width={isNonMobileScreen ? 120 : 90}
+              height={isNonMobileScreen ? 120 : 90}
               src={profile.profilePicture}
               alt="profile picture"
               className="image-fit rounded-img"
@@ -59,8 +59,8 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
           ) : (
             <Avatar
               sx={{
-                width: { xs: 80, sm: 120 },
-                height: { xs: 80, sm: 120 },
+                width: { xs: 90, sm: 120 },
+                height: { xs: 90, sm: 120 },
                 bgcolor: "#57CC99",
               }}
             >
@@ -73,17 +73,19 @@ const UserInfo = ({ userId, email, numberOfPosts }: Props) => {
         </Box>
         <Stack justifyContent="center" textAlign="left">
           <Typography variant="subtitle1">{profile.name}</Typography>
-          <Typography variant="subtitle2" color="#727475">
+          <Typography variant="subtitle2" color="#727475" fontWeight={400}>
             {email}
           </Typography>
           {numberOfPosts && (
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" fontWeight={400}>
               <span style={{ fontWeight: "700" }}>{numberOfPosts}</span>{" "}
               Memories
             </Typography>
           )}
           <Box mb={1} sx={{ maxWidth: { xs: "15rem", sm: "20rem" } }}>
-            <Typography variant="subtitle2">{profile.bio}</Typography>
+            <Typography variant="subtitle2" fontWeight={400}>
+              {profile.bio}
+            </Typography>
           </Box>
           <Stack direction="row" gap={1}>
             <Button
