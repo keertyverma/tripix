@@ -73,16 +73,10 @@ The application is designed to be responsive and provide an optimal user experie
    npm install
    ```
 
-3. Export enviornment variable, based on your sytem
+3. Set up environment variables
 
-   ```
-    NEXT_PUBLIC_APPWRITE_PROJECT_ID=<your-project-id>
-    NEXT_PUBLIC_APPWRITE_DATABASE_ID=<your-database-id>
-    NEXT_PUBLIC_APPWRITE_COLLECTION_ID=<your-collection-id>
-    NEXT_PUBLIC_APPWRITE_BUCKET_ID=<your-bucket-id>
-    NEXT_PUBLIC_APP_URL=http://localhost:3000
-
-   ```
+   - Create a `.env` file by copying the provided `.env.example`
+   - Then, open the .env file and replace the placeholder values with your actual Appwrite project credentials.
 
 4. Start the development server:
 
