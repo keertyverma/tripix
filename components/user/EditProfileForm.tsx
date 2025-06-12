@@ -80,9 +80,9 @@ const EditProfileForm = ({ profile, onSuccess }: Props) => {
         const uploadImageRes = await storageService.uploadImage(selectedImage);
         const uploadedPhotoId = uploadImageRes.$id;
 
-        //get preview image url
+        //get image url
         updatedProfile.data.profilePicture =
-          storageService.getPreviewImage(uploadedPhotoId).href;
+          storageService.getImageUrl(uploadedPhotoId).href;
         updatedProfile.data.photoId = uploadedPhotoId;
       } else if (isRemoveImage) {
         // remove profile image to storage bucket
