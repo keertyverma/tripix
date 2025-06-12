@@ -9,8 +9,8 @@ const storageService = {
   uploadImage: (file: File) =>
     storage.createFile(bucketId as string, ID.unique(), file),
 
-  getPreviewImage: (fileId: string) =>
-    storage.getFilePreview(bucketId as string, fileId),
+  getImageUrl: (fileId: string) =>
+    storage.getFileView(bucketId as string, fileId),
 
   deleteImage: (fileId: string) =>
     storage.deleteFile(bucketId as string, fileId),

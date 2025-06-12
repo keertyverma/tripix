@@ -86,8 +86,8 @@ const CreatePostForm = () => {
       );
       const photoId = uploadImgRes.$id;
 
-      // get preview image url
-      postData.photoUrl = storageService.getPreviewImage(photoId).href;
+      // get image url
+      postData.photoUrl = storageService.getImageUrl(photoId).href;
 
       // create new post
       addPost.mutate(postData, {
